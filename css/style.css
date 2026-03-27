@@ -1,0 +1,1383 @@
+/* ============================================================
+   REVONC — Bright Biotech-inspired Design System
+   Dark full-bleed, editorial typography, centered hero object,
+   massive overlapping headline, minimal nav, circular CTA.
+   ============================================================ */
+
+/* ============================================================
+   1. TOKENS
+   ============================================================ */
+:root {
+  /* Brand greens — teal-shifted from raw Bright Biotech green */
+  --bg-deep:       #060d14;       /* near-black navy (richer than pure black) */
+  --bg-dark:       #0a1520;
+  --bg-panel:      #0e1c2e;
+  --bg-teal:       #042a24;       /* deep teal panel bg */
+  --bg-light:      #f2f4f0;       /* off-white light section */
+
+  --teal-500:      #00c9b7;       /* primary teal */
+  --teal-400:      #00e5d0;       /* bright teal accent */
+  --teal-300:      #5ff0e0;       /* highlight teal */
+  --teal-glow:     rgba(0, 201, 183, 0.18);
+
+  --green-accent:  #2ddb7e;       /* pill/badge green like Bright Biotech lime */
+  --green-dark:    #1aa85e;
+
+  --white:         #ffffff;
+  --white-80:      rgba(255,255,255,0.8);
+  --white-55:      rgba(255,255,255,0.55);
+  --white-30:      rgba(255,255,255,0.3);
+  --white-10:      rgba(255,255,255,0.08);
+  --white-6:       rgba(255,255,255,0.06);
+
+  --text-dark:     #0e1c2e;
+
+  /* Typography */
+  --font:          'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --nav-h:         76px;
+
+  /* Transitions */
+  --ease:          cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================================
+   2. RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg-deep); color: var(--white); overflow-x: hidden; cursor: default; }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ============================================================
+   3. NAVIGATION — Bright Biotech: logo left, "Menu +" right
+   ============================================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  /* No background initially — transparent over dark hero */
+  transition: background 0.5s var(--ease);
+}
+
+.nav.bg--visible {
+  background: rgba(6, 13, 20, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+}
+
+.nav__logo-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.nav__logo-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+/* "Menu +" button — exact Bright Biotech style */
+.nav__menu-btn {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 100px;
+  padding: 0.55rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.nav__menu-btn:hover {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.nav__plus {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1;
+  transition: transform 0.35s var(--ease);
+}
+
+.nav__menu-btn.open .nav__plus {
+  transform: rotate(45deg);
+}
+
+/* ============================================================
+   4. FULLSCREEN OVERLAY MENU
+   ============================================================ */
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: var(--bg-deep);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 3rem 3rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-24px);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease);
+}
+
+.menu-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.menu-overlay__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-overlay__link {
+  font-size: clamp(2rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--white-55);
+  transition: color 0.2s;
+  line-height: 1.15;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+}
+
+.menu-overlay__link::before {
+  content: attr(data-num);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--teal-500);
+  margin-bottom: 0.1rem;
+}
+
+.menu-overlay__link:hover {
+  color: var(--white);
+}
+
+.menu-overlay__footer {
+  margin-top: auto;
+  display: flex;
+  gap: 2rem;
+  font-size: 0.8rem;
+  color: var(--white-30);
+  border-top: 1px solid var(--white-10);
+  padding-top: 1.5rem;
+}
+
+/* ============================================================
+   5. LEFT SIDE NAV — dots + arrows (Bright Biotech)
+   ============================================================ */
+.side-nav {
+  position: fixed;
+  left: 1.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.side-nav__arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--white-10);
+  border: 1px solid var(--white-30);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white-55);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.side-nav__arrow--up svg { transform: rotate(0deg); }
+.side-nav__arrow--down svg { transform: rotate(180deg); }
+
+.side-nav__arrow:hover {
+  background: var(--teal-glow);
+  border-color: var(--teal-500);
+  color: var(--teal-400);
+}
+
+.side-nav__dots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.side-nav__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--white-30);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+
+.side-nav__dot--active {
+  background: var(--teal-400);
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 10px var(--teal-500);
+}
+
+/* ============================================================
+   6. CIRCULAR ROTATING CONTACT RING (Bright Biotech)
+   ============================================================ */
+.contact-ring {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 50;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.contact-ring__text {
+  position: absolute;
+  inset: 0;
+  color: var(--white-55);
+  animation: spinRing 16s linear infinite;
+  transform-origin: center;
+  text-transform: uppercase;
+}
+
+@keyframes spinRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.contact-ring__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--teal-500);
+  box-shadow: 0 0 24px rgba(0, 201, 183, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.25s var(--ease);
+  flex-shrink: 0;
+}
+
+.contact-ring:hover .contact-ring__arrow {
+  background: var(--teal-400);
+  box-shadow: 0 0 40px rgba(0, 229, 208, 0.6);
+  transform: scale(1.1);
+}
+
+/* ============================================================
+   7. PANELS (full-viewport sections)
+   ============================================================ */
+.panel {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.panel--hero  { background: var(--bg-deep); }
+.panel--dark  { background: var(--bg-dark); }
+.panel--teal  { background: var(--bg-teal); }
+.panel--light { background: var(--bg-light); color: var(--text-dark); }
+
+.panel__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 20%, rgba(0,201,183,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(0,201,183,0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.panel__bg--contact {
+  background:
+    radial-gradient(ellipse 80% 80% at 50% 40%, rgba(0,201,183,0.14) 0%, transparent 70%);
+}
+
+/* ============================================================
+   8. PANEL GRID — 3-column layout like Bright Biotech
+      [label col] [main headline col] [aside content col]
+   ============================================================ */
+.panel__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0;
+  padding: var(--nav-h) 2.5rem 3rem;
+  align-items: center;
+}
+
+.panel__label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-right: 2rem;
+  align-self: start;
+  padding-top: 0.5rem;
+}
+
+.panel__num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--teal-500);
+}
+
+.panel__cat {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white-30);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-top: 0.75rem;
+}
+
+.panel--light .panel__cat { color: rgba(0,0,0,0.3); }
+
+.panel__main {
+  padding-right: 4rem;
+}
+
+.panel__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--white);
+}
+
+.panel__title em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--teal-400) 0%, var(--green-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.panel__title--dark {
+  color: var(--text-dark);
+}
+
+.panel__title--dark em {
+  background: linear-gradient(135deg, #007a70 0%, var(--teal-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.panel__sub {
+  margin-top: 1.25rem;
+  font-size: 1rem;
+  color: var(--white-55);
+  line-height: 1.65;
+  max-width: 340px;
+}
+
+.panel__body {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--white-55);
+}
+
+.panel--light .panel__body { color: rgba(14,28,46,0.65); }
+
+.panel__cta-link {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--teal-400);
+  transition: gap 0.2s;
+}
+
+.panel__cta-link:hover { opacity: 0.8; }
+
+/* ============================================================
+   9. HERO — full viewport, centered object, bottom headline
+   ============================================================ */
+.panel--hero {
+  justify-content: center;
+  align-items: center;
+}
+
+/* Centered hero object */
+.hero-object {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 480px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- ORB SYSTEM (Spline placeholder) ---- */
+.orb-system {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orb-system__ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 201, 183, 0.15);
+  transform-origin: center;
+}
+
+.orb-system__ring--1 {
+  width: 460px; height: 460px;
+  animation: orbRing 18s linear infinite;
+  border-color: rgba(0,201,183,0.1);
+}
+
+.orb-system__ring--2 {
+  width: 340px; height: 340px;
+  animation: orbRing 12s linear infinite reverse;
+  border-color: rgba(0,201,183,0.18);
+}
+
+.orb-system__ring--3 {
+  width: 220px; height: 220px;
+  animation: orbRing 7s linear infinite;
+  border-color: rgba(0,201,183,0.28);
+}
+
+@keyframes orbRing {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orb-system__glow {
+  position: absolute;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,201,183,0.25) 0%, transparent 70%);
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.orb-system__core {
+  position: relative;
+  z-index: 2;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0,201,183,0.3), rgba(0,100,90,0.4));
+  border: 1px solid rgba(0,201,183,0.4);
+  box-shadow:
+    0 0 60px rgba(0,201,183,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: coreFloat 6s ease-in-out infinite;
+}
+
+@keyframes coreFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.orb-system__logo {
+  width: 54px; height: 54px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Floating badges */
+.orb-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(6,13,20,0.7);
+  border: 1px solid rgba(0,201,183,0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 100px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--white-80);
+  white-space: nowrap;
+}
+
+.orb-badge__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--teal-400);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--teal-500);
+}
+
+.orb-badge__dot--green  { background: var(--green-accent); box-shadow: 0 0 6px var(--green-accent); }
+.orb-badge__dot--gold   { background: #f5c542; box-shadow: 0 0 6px #f5c542; }
+
+.orb-badge--1 { top: 5%;  left: 55%; animation: badgeFloat 7s ease-in-out infinite; }
+.orb-badge--2 { top: 50%; right: -2%; animation: badgeFloat 9s ease-in-out infinite 1s; }
+.orb-badge--3 { bottom: 12%; left: 52%; animation: badgeFloat 8s ease-in-out infinite 2s; }
+.orb-badge--4 { top: 38%; left: -5%; animation: badgeFloat 10s ease-in-out infinite 0.5s; }
+
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Massive Bright Biotech–style overlapping bottom headline */
+.hero-headline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding: 0 2.5rem 2.5rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.hero-headline__text {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: var(--white);
+}
+
+.hero-headline__text em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--teal-400) 0%, var(--green-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Pill CTA below headline — Bright Biotech style */
+.hero-headline__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--teal-500);
+  color: var(--bg-deep);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  padding: 0.7rem 1.6rem;
+  white-space: nowrap;
+  align-self: flex-end;
+  margin-bottom: 0.5rem;
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 0 28px rgba(0,201,183,0.35);
+}
+
+.hero-headline__cta:hover {
+  background: var(--teal-400);
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(0,229,208,0.5);
+}
+
+/* Top-right tagline (Bright Biotech) */
+.hero-tagline {
+  position: absolute;
+  top: calc(var(--nav-h) + 2rem);
+  right: 2.5rem;
+  text-align: right;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--white-30);
+  line-height: 1.65;
+  letter-spacing: 0.02em;
+  z-index: 2;
+}
+
+/* ============================================================
+   10. STATS (gap section)
+   ============================================================ */
+.stat-stack {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--white-10);
+}
+
+.stat-item__num {
+  font-size: 3.25rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--teal-400);
+  line-height: 1;
+}
+
+.stat-item__pct {
+  font-size: 1.5rem;
+  vertical-align: super;
+}
+
+.stat-item__lbl {
+  font-size: 0.78rem;
+  color: var(--white-30);
+  line-height: 1.55;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   11. APP MOCKUP FLOAT (How it works)
+   ============================================================ */
+.app-float {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.app-frame {
+  background: #060e18;
+  border-radius: 40px;
+  padding: 14px;
+  box-shadow:
+    0 0 0 8px rgba(255,255,255,0.04),
+    0 40px 80px rgba(0,0,0,0.5),
+    0 0 50px rgba(0,201,183,0.12);
+  max-width: 280px;
+  width: 100%;
+  animation: mockFloat 6s ease-in-out infinite;
+}
+
+@keyframes mockFloat {
+  0%,100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-10px) rotate(-1deg); }
+}
+
+.app-frame__screen {
+  background: linear-gradient(170deg, #0c1e32 0%, #071018 100%);
+  border-radius: 28px;
+  padding: 22px 18px;
+}
+
+.app-frame__topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.app-frame__title { font-size: 0.78rem; font-weight: 700; color: var(--white-80); }
+.app-frame__xp    { font-size: 0.72rem; font-weight: 700; color: var(--teal-300); background: rgba(0,201,183,0.1); padding: 3px 10px; border-radius: 100px; }
+
+/* Path nodes */
+.app-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 18px;
+}
+
+.app-path__node {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; font-weight: 700;
+}
+
+.app-path__node--done { background: rgba(45,219,126,0.18); border: 1.5px solid #2ddb7e; color: #2ddb7e; font-size: 0.85rem; }
+.app-path__node--active { background: linear-gradient(135deg, var(--teal-500), var(--teal-400)); box-shadow: 0 0 18px rgba(0,201,183,0.5); animation: nodePulse 2s ease-in-out infinite; }
+.app-path__node--locked { background: var(--white-6); border: 1.5px dashed rgba(255,255,255,0.12); color: var(--white-30); font-size: 0.85rem; }
+
+@keyframes nodePulse {
+  0%,100% { box-shadow: 0 0 18px rgba(0,201,183,0.5); }
+  50% { box-shadow: 0 0 32px rgba(0,201,183,0.8); }
+}
+
+.app-path__line { width: 2px; height: 14px; background: rgba(0,201,183,0.2); }
+.app-path__line--done { background: #2ddb7e; }
+
+/* App cards */
+.app-cards { display: flex; flex-direction: column; gap: 7px; }
+.app-card {
+  background: var(--white-6);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.app-card--alt { background: rgba(0,201,183,0.06); border-color: rgba(0,201,183,0.14); }
+.app-card__type { font-size: 0.65rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--teal-300); min-width: 65px; }
+.app-card__name { font-size: 0.7rem; color: var(--white-80); flex: 1; }
+.app-card__dur  { font-size: 0.65rem; color: var(--white-30); }
+
+/* Steps list */
+.steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step-row {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--white-10);
+  transition: background 0.2s;
+}
+
+.step-row:last-child { border-bottom: none; }
+
+.step-row__n {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--teal-500);
+  padding-top: 0.15rem;
+  min-width: 26px;
+}
+
+.step-row strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--white-80);
+  margin-bottom: 0.2rem;
+}
+
+.step-row p {
+  font-size: 0.8rem;
+  color: var(--white-30);
+  line-height: 1.55;
+}
+
+/* ============================================================
+   12. PROOF / EVIDENCE GRID (bento)
+   ============================================================ */
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.proof-card {
+  background: var(--white-6);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.proof-card:hover {
+  border-color: rgba(0,201,183,0.25);
+  background: rgba(0,201,183,0.06);
+}
+
+.proof-card--big {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(0,201,183,0.1), rgba(0,201,183,0.04));
+  border-color: rgba(0,201,183,0.2);
+}
+
+.proof-card--quote {
+  grid-column: span 2;
+}
+
+.proof-card .proof-card__label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal-400);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.proof-card__num {
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.proof-card--big .proof-card__num { font-size: 3.5rem; }
+
+.proof-card__sub {
+  font-size: 0.75rem;
+  color: var(--white-30);
+}
+
+.proof-card--quote p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--white-80);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.proof-card--quote strong {
+  font-size: 0.78rem;
+  color: var(--teal-300);
+}
+
+/* ============================================================
+   13. ORGANISATION CARDS (light panel)
+   ============================================================ */
+.org-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.org-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  background: rgba(14,28,46,0.06);
+  border: 1px solid rgba(14,28,46,0.1);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  transition: all 0.25s var(--ease);
+}
+
+.org-card:hover {
+  border-color: rgba(0,122,112,0.3);
+  background: rgba(0,122,112,0.06);
+  transform: translateX(4px);
+}
+
+.org-card__icon { font-size: 1.75rem; flex-shrink: 0; }
+
+.org-card__body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.35rem;
+}
+
+.org-card__body p {
+  font-size: 0.82rem;
+  color: rgba(14,28,46,0.6);
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.org-card__deal {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #007a70;
+  background: rgba(0,122,112,0.1);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+/* ============================================================
+   14. FOUNDER CARD (story)
+   ============================================================ */
+.founder-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--white-10);
+}
+
+.founder-card__avatar {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-500), var(--green-accent));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1.125rem; color: var(--bg-deep);
+  flex-shrink: 0;
+}
+
+.founder-card__name {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.founder-card__title {
+  font-size: 0.75rem;
+  color: var(--white-30);
+}
+
+/* ============================================================
+   15. CONTACT CENTER (CTA section)
+   ============================================================ */
+.contact-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--nav-h) 2.5rem 8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-center__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal-400);
+  margin-bottom: 1.25rem;
+  display: block;
+}
+
+.contact-center__title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+
+.contact-center__sub {
+  font-size: 1rem;
+  color: var(--white-55);
+  max-width: 440px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.contact-center__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  background: var(--teal-500);
+  color: var(--bg-deep);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 100px;
+  padding: 0.875rem 2rem;
+  transition: all 0.25s var(--ease);
+  box-shadow: 0 0 32px rgba(0,201,183,0.35);
+}
+
+.contact-center__btn:hover {
+  background: var(--teal-400);
+  box-shadow: 0 0 50px rgba(0,229,208,0.5);
+  transform: translateY(-2px);
+}
+
+/* ============================================================
+   16. FOOTER
+   ============================================================ */
+.footer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 2.5rem;
+  border-top: 1px solid var(--white-10);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer__left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.footer__copy {
+  font-size: 0.72rem;
+  color: var(--white-30);
+}
+
+.footer__right {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer__right a {
+  font-size: 0.72rem;
+  color: var(--white-30);
+  transition: color 0.2s;
+}
+
+.footer__right a:hover { color: var(--teal-300); }
+
+/* ============================================================
+   17. RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .panel__grid {
+    grid-template-columns: 80px 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .side-nav { display: none; }
+  .contact-ring { width: 90px; height: 90px; bottom: 1.5rem; right: 1.5rem; }
+  .contact-ring__arrow { width: 36px; height: 36px; }
+
+  .panel__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 2rem;
+    padding: calc(var(--nav-h) + 1.5rem) 1.5rem 2.5rem;
+    align-items: start;
+  }
+
+  .panel__label {
+    flex-direction: row;
+    align-items: center;
+    padding-right: 0;
+  }
+
+  .panel__cat {
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin-top: 0;
+  }
+
+  .panel__main { padding-right: 0; }
+
+  .hero-object {
+    width: 280px; height: 280px;
+    transform: translate(-50%, -60%);
+  }
+
+  .orb-system__ring--1 { width: 280px; height: 280px; }
+  .orb-system__ring--2 { width: 210px; height: 210px; }
+  .orb-system__ring--3 { width: 140px; height: 140px; }
+  .orb-system__core { width: 70px; height: 70px; }
+  .orb-system__logo { width: 38px; height: 38px; }
+  .orb-badge { font-size: 0.65rem; padding: 0.3rem 0.65rem; }
+  .orb-badge--2 { right: -8%; }
+  .orb-badge--4 { left: -8%; }
+
+  .hero-headline { padding: 0 1.5rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-headline__cta { align-self: flex-start; }
+
+  .hero-tagline { right: 1.5rem; font-size: 0.7rem; }
+
+  .proof-grid { grid-template-columns: 1fr; }
+  .proof-card--big, .proof-card--quote { grid-column: span 1; }
+
+  .nav { padding: 0 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .hero-headline__text { font-size: 2.2rem; }
+  .panel__title { font-size: 2rem; }
+  .contact-center__title { font-size: 2.5rem; }
+  .proof-card__num { font-size: 2rem; }
+  .proof-card--big .proof-card__num { font-size: 2.5rem; }
+}
+
+/* ============================================================
+   18. SPLINE SLOTS
+   ============================================================ */
+/*
+  Spline 3D integration points:
+  ─────────────────────────────
+  #spline-hero  → Replace .orb-system with:
+    <spline-viewer url="…" style="position:absolute;inset:0;width:100%;height:100%;"></spline-viewer>
+
+  #spline-app   → Replace .app-frame wrapper with Spline 3D phone:
+    <spline-viewer url="…" style="width:100%;height:400px;"></spline-viewer>
+
+  Required script in <head>:
+    <script type="module" src="https://unpkg.com/@splinetool/viewer/build/spline-viewer.js"></script>
+
+  Use window.loadSpline(selector, url) helper in main.js for dynamic loading.
+*/
+
+
+/* ============================================================
+   19. DROOMPAD 3D SCROLL EXPERIENCE
+   ============================================================ */
+.panel--droompad-scroll {
+  position: relative;
+  /* Make the section massive so we can scroll through it */
+  height: 400vh;
+  background: var(--bg-teal);
+  overflow: visible;
+}
+
+.droompad-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 3D Scene Container */
+.droompad-3d-scene {
+  position: absolute;
+  inset: 0;
+  perspective: 1200px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 5vh;
+  pointer-events: none;
+}
+
+/* The actual 3D path laying flat */
+.droompad-3d-path {
+  position: relative;
+  width: 120px;
+  height: 200vh;
+  transform-style: preserve-3d;
+  /* Rotate X to lay flat, move down slightly, and scale up */
+  transform: rotateX(75deg) translateY(0) scale3d(1, 1, 1);
+  transform-origin: bottom center;
+  will-change: transform;
+}
+
+.path-glow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 201, 183, 0.6) 0%, transparent 100%);
+  filter: blur(40px);
+}
+
+.path-line {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to top, var(--teal-400), transparent);
+  box-shadow: 0 0 20px var(--teal-500);
+  border-radius: 10px;
+}
+
+.path-node {
+  position: absolute;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  background: var(--teal-500);
+  border: 4px solid var(--bg-teal);
+  border-radius: 50%;
+  transform: translateX(-50%) translateZ(10px);
+  box-shadow: 0 0 30px var(--teal-400);
+  transition: all 0.4s var(--ease);
+  opacity: 0.3;
+}
+
+.path-node.active {
+  background: var(--white);
+  box-shadow: 0 0 50px var(--white), 0 0 20px var(--teal-400);
+  opacity: 1;
+  transform: translateX(-50%) translateZ(30px) scale(1.4);
+}
+
+/* Distribute nodes over the height of the 3D path */
+.path-node--1 { bottom: 10%; }
+.path-node--2 { bottom: 30%; }
+.path-node--3 { bottom: 50%; }
+.path-node--4 { bottom: 70%; }
+.path-node--5 { bottom: 90%; }
+
+/* Floating Foreground Phone */
+.droompad-phone {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 600px;
+  background: #060e18;
+  border-radius: 40px;
+  padding: 14px;
+  box-shadow: 0 0 0 8px rgba(255,255,255,0.04), 0 40px 80px rgba(0,0,0,0.5), 0 0 50px rgba(0,201,183,0.12);
+  z-index: 5;
+  transition: transform 0.1s linear;
+}
+
+.droompad-phone__screen {
+  background: linear-gradient(170deg, #0c1e32 0%, #071018 100%);
+  border-radius: 28px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 22px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phone-dynamic-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.phone-mock-item {
+  background: var(--white-6);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 14px;
+  color: white;
+  animation: slideUpIn 0.5s var(--ease) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slideUpIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Text Blocks Container */
+.droompad-scroll-text {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  /* Padding top so first item aligns when sticky starts */
+  padding-top: 50vh;
+  padding-bottom: 50vh;
+  pointer-events: none; /* Let clicks pass through to 3D/Phone if needed */
+}
+
+/* Individual text steps */
+.droompad-step {
+  height: 80vh; /* Spacing between steps */
+  display: flex;
+  align-items: center;
+  padding-left: 10%;
+}
+
+.step-card {
+  background: rgba(4, 42, 36, 0.85); /* Dark teal with transparency */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 201, 183, 0.3);
+  padding: 2.5rem;
+  border-radius: 24px;
+  max-width: 440px;
+  opacity: 0.2;
+  transform: translateY(40px);
+  transition: all 0.6s var(--ease);
+}
+
+.step-card.active {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(0,201,183,0.1);
+}
+
+.step-card__num {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--teal-400);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.step-card__title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1.1;
+}
+
+.step-card__desc {
+  font-size: 1.05rem;
+  color: var(--white-80);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .droompad-phone { display: none; }
+  .droompad-step { padding-left: 5%; justify-content: center; }
+  .step-card { max-width: 90%; }
+}

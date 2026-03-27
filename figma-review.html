@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RevOnc Website — Figma Review (Statisch)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       TOKENS
+       ============================================================ */
+    :root {
+      --bg-deep:       #031019;
+      --bg-dark:       #0a1520;
+      --bg-panel:      #0e1c2e;
+      --bg-teal:       #0a2e2b;
+      --bg-light:      #F8F8F8;
+      --teal-500:      #18B0AA;
+      --teal-400:      #2E7B78;
+      --teal-300:      #4DC9C3;
+      --teal-glow:     rgba(24, 176, 170, 0.18);
+      --green-accent:  #FF9C40;
+      --green-dark:    #D76A04;
+      --orange-cta:    #F58E2E;
+      --white:         #ffffff;
+      --white-80:      rgba(255,255,255,0.8);
+      --white-55:      rgba(255,255,255,0.55);
+      --white-30:      rgba(255,255,255,0.3);
+      --white-10:      rgba(255,255,255,0.08);
+      --white-6:       rgba(255,255,255,0.06);
+      --text-dark:     #031019;
+      --gray-disabled: #D8D8D8;
+      --font:          'Inter', system-ui, -apple-system, sans-serif;
+      --nav-h:         76px;
+    }
+
+    /* ============================================================
+       RESET
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg-deep); color: var(--white); overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ============================================================
+       NAVIGATION — Visible top nav (Yorin's feedback)
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      background: rgba(6, 13, 20, 0.85);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .nav__logo-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .nav__logo-text {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav__links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white-80);
+      letter-spacing: 0.01em;
+      transition: color 0.2s;
+    }
+
+    .nav__links a:hover {
+      color: var(--white);
+    }
+
+    .nav__cta {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--white) !important;
+      background: var(--orange-cta);
+      padding: 0.55rem 1.4rem;
+      border-radius: 100px;
+      letter-spacing: 0.01em;
+    }
+
+    .nav__cta:hover {
+      background: var(--green-dark);
+    }
+
+    /* ============================================================
+       PANELS — Shared section layout
+       ============================================================ */
+    .panel {
+      position: relative;
+      min-height: 100vh;
+      padding: 8rem 2.5rem 6rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .panel--hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 4rem;
+      background: var(--bg-deep);
+    }
+
+    .panel--dark {
+      background: var(--bg-deep);
+    }
+
+    .panel--light {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .panel__grid {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 200px 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .panel__label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 0.5rem;
+    }
+
+    .panel__num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal-500);
+      letter-spacing: 0.15em;
+    }
+
+    .panel__cat {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white-55);
+    }
+
+    .panel--light .panel__cat {
+      color: var(--text-dark);
+      opacity: 0.5;
+    }
+
+    .panel__title {
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .panel__title em {
+      font-style: normal;
+      color: var(--teal-300);
+    }
+
+    .panel__title--dark em {
+      color: var(--teal-400);
+    }
+
+    .panel__sub {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--white-55);
+      line-height: 1.6;
+    }
+
+    .panel__body {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--white-80);
+      max-width: 500px;
+    }
+
+    .panel__aside {
+      padding-top: 0.5rem;
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero-content {
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 2.5rem;
+    }
+
+    .hero-headline__text {
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-headline__text em {
+      font-style: normal;
+      color: var(--teal-300);
+    }
+
+    .hero-headline__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--orange-cta);
+      border: 2px solid var(--orange-cta);
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      transition: all 0.25s;
+    }
+
+    .hero-headline__cta:hover {
+      background: var(--orange-cta);
+      color: var(--white);
+    }
+
+    .hero-tagline {
+      text-align: right;
+      font-size: 0.9rem;
+      color: var(--white-55);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    /* Logo orb placeholder */
+    .hero-logo-area {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      text-align: center;
+    }
+
+    .hero-logo-area img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 60px rgba(24, 176, 170, 0.4)) drop-shadow(0 0 120px rgba(24, 176, 170, 0.15));
+    }
+
+    /* ============================================================
+       STAT STACK
+       ============================================================ */
+    .stat-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .stat-item__num {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      color: var(--teal-300);
+      line-height: 1;
+    }
+
+    .stat-item__pct {
+      font-size: 50%;
+    }
+
+    .stat-item__lbl {
+      font-size: 0.8rem;
+      color: var(--white-55);
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       STEPS LIST
+       ============================================================ */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .step-row {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.25rem;
+      border-radius: 12px;
+      background: var(--white-6);
+      border: 1px solid var(--white-10);
+    }
+
+    .step-row__num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--teal-500);
+      letter-spacing: 0.1em;
+      padding-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .step-row__title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .step-row__desc {
+      font-size: 0.85rem;
+      color: var(--white-55);
+      line-height: 1.55;
+    }
+
+    /* Mockup image */
+    .mockup-showcase {
+      margin-top: 2.5rem;
+    }
+
+    .mockup-showcase__img {
+      width: 100%;
+      max-width: 550px;
+      border-radius: 16px;
+    }
+
+    /* ============================================================
+       PROOF GRID
+       ============================================================ */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .proof-card {
+      background: var(--white-6);
+      border: 1px solid var(--white-10);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+
+    .proof-card--big {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--bg-teal), var(--bg-panel));
+      border-color: var(--teal-400);
+    }
+
+    .proof-card__label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--teal-300);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .proof-card__num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .proof-card--big .proof-card__num {
+      font-size: 3.5rem;
+    }
+
+    .proof-card__sub {
+      font-size: 0.8rem;
+      color: var(--white-55);
+      margin-top: 0.5rem;
+    }
+
+    .proof-card--quote {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(24,176,170,0.08), transparent);
+      border-color: var(--teal-400);
+      padding: 2rem;
+    }
+
+    .proof-card--quote p {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--white-80);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+
+    .proof-card--quote strong {
+      font-size: 0.85rem;
+      color: var(--teal-300);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       ORG CARDS
+       ============================================================ */
+    .org-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .org-card {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      border-radius: 16px;
+      background: rgba(3,16,25,0.5);
+      border: 1px solid rgba(3,16,25,0.15);
+    }
+
+    .panel--light .org-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .org-card__icon {
+      font-size: 1.75rem;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(24,176,170,0.1);
+      border-radius: 12px;
+    }
+
+    .org-card__body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text-dark);
+    }
+
+    .org-card__body p {
+      font-size: 0.85rem;
+      color: rgba(3,16,25,0.65);
+      line-height: 1.55;
+      margin-bottom: 0.5rem;
+    }
+
+    .org-card__deal {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--teal-400);
+      letter-spacing: 0.02em;
+    }
+
+    .panel__cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--teal-400);
+    }
+
+    /* ============================================================
+       FOUNDER CARD
+       ============================================================ */
+    .founder-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 1.25rem;
+      border-radius: 12px;
+      background: var(--white-6);
+      border: 1px solid var(--white-10);
+    }
+
+    .founder-card__avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal-400), var(--teal-500));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .founder-card__name {
+      font-size: 1rem;
+      font-weight: 700;
+      display: block;
+    }
+
+    .founder-card__title {
+      font-size: 0.8rem;
+      color: var(--white-55);
+    }
+
+    /* ============================================================
+       CONTACT SECTION
+       ============================================================ */
+    .contact-center {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-top: 10rem;
+    }
+
+    .contact-center__eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-300);
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .contact-center__title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-center__sub {
+      font-size: 1.05rem;
+      color: var(--white-55);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-center__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--orange-cta);
+      padding: 1rem 2.5rem;
+      border-radius: 100px;
+    }
+
+    .contact-center__btn:hover {
+      background: var(--green-dark);
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2.5rem;
+      border-top: 1px solid var(--white-10);
+      font-size: 0.8rem;
+      color: var(--white-30);
+    }
+
+    .footer__left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      color: var(--white-55);
+    }
+
+    .footer__logo img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .footer__right {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer__right a:hover {
+      color: var(--white-55);
+    }
+
+    /* ============================================================
+       SECTION DIVIDER (visual droompad hint)
+       ============================================================ */
+    .section-divider {
+      width: 3px;
+      height: 80px;
+      margin: 0 auto;
+      background: linear-gradient(to bottom, var(--teal-500), transparent);
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       REVIEW NOTE BADGES
+       ============================================================ */
+    .review-note {
+      display: inline-block;
+      background: var(--orange-cta);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .panel__grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .nav__links { display: none; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .hero-content { flex-direction: column; align-items: flex-start; gap: 2rem; }
+      .hero-tagline { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================
+       NAVIGATION — Zichtbaar (feedback Yorin: geen hamburger)
+       ======================================================== -->
+  <nav class="nav">
+    <a href="#" class="nav__logo">
+      <img src="revonc logo.webp" alt="" class="nav__logo-img" />
+      <span class="nav__logo-text">RevOnc</span>
+    </a>
+
+    <div class="nav__links">
+      <a href="#probleem">Het probleem</a>
+      <a href="#droompad">Hoe het werkt</a>
+      <a href="#resultaten">Resultaten</a>
+      <a href="#organisaties">Organisaties</a>
+      <a href="#verhaal">Ons Verhaal</a>
+      <a href="#contact" class="nav__cta">Plan een gesprek</a>
+    </div>
+  </nav>
+
+  <!-- ========================================================
+       SECTION 1: HERO
+       ======================================================== -->
+  <section class="panel panel--hero" id="panel-0">
+    <!-- Logo center (statisch, geen animaties) -->
+    <div class="hero-logo-area">
+      <img src="revonc logo.webp" alt="RevOnc" />
+    </div>
+
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-headline__text">Jouw herstel. <em>Jouw pad.</em></h1>
+        <a href="#droompad" class="hero-headline__cta">
+          Ontdek de app <span>→</span>
+        </a>
+        <br /><br />
+        <span class="review-note">Feedback nodig</span>
+        <p style="font-size:0.8rem;color:var(--white-55);max-width:400px;">
+          CTA "Ontdek de app" is te zwak volgens Yorin. Alternatieven: "Start jouw herstelpad →" / "Begin vandaag →" / "Plan een gesprek →"
+        </p>
+      </div>
+      <div class="hero-tagline">
+        <p>Wetenschappelijk onderbouwde<br />beweegbegeleiding na kanker</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 2: HET PROBLEEM
+       ======================================================== -->
+  <section class="panel panel--dark" id="probleem">
+    <div class="panel__grid">
+      <div class="panel__label">
+        <span class="panel__num">01</span>
+        <span class="panel__cat">Het probleem</span>
+      </div>
+
+      <div class="panel__main">
+        <h2 class="panel__title">Na de behandeling<br />is de zorg voorbij.<br /><em>Het herstel niet.</em></h2>
+      </div>
+
+      <div class="panel__aside">
+        <p class="panel__body">
+          Je bent ontslagen, de afspraken worden zeldzamer — en niemand vertelt je hoeveel je mag bewegen, hoe je veilig opbouwt, of wat veilig is. Geen plan. Geen begeleiding. Alleen.
+        </p>
+        <div class="stat-stack">
+          <div class="stat-item">
+            <span class="stat-item__num">40–50<span class="stat-item__pct">%</span></span>
+            <span class="stat-item__lbl">Risicoreductie herval<br />via gepersonaliseerde beweging</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-item__num">0</span>
+            <span class="stat-item__lbl">Gestructureerde digitale<br />oplossingen bestaan vandaag</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 3: HOE HET WERKT
+       ======================================================== -->
+  <section class="panel panel--dark" id="droompad">
+    <div class="panel__grid">
+      <div class="panel__label">
+        <span class="panel__num">02</span>
+        <span class="panel__cat">Hoe het werkt</span>
+      </div>
+
+      <div class="panel__main">
+        <h2 class="panel__title">Vijf stappen<br />naar jouw<br /><em>beweegdroom.</em></h2>
+        <div class="mockup-showcase">
+          <img src="mockups.webp" alt="RevOnc app — droompad en profiel schermen" class="mockup-showcase__img" />
+        </div>
+      </div>
+
+      <div class="panel__aside">
+        <div class="steps-list">
+          <div class="step-row">
+            <span class="step-row__num">01</span>
+            <div>
+              <h3 class="step-row__title">Beweegdroom instellen</h3>
+              <p class="step-row__desc">Jij kiest het doel — van opnieuw de trap oplopen tot 5 km wandelen. Dit is jouw noordster.</p>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-row__num">02</span>
+            <div>
+              <h3 class="step-row__title">Fysieke Assessment</h3>
+              <p class="step-row__desc">Een korte vragenlijst bepaalt waar jouw lichaam nu staat. Veilig en volledig op maat.</p>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-row__num">03</span>
+            <div>
+              <h3 class="step-row__title">AI-trainingsplan</h3>
+              <p class="step-row__desc">De RevOnc Engine ontwerpt jouw schema. Elke dag weet je precies wat, hoe lang en hoe intensief.</p>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-row__num">04</span>
+            <div>
+              <h3 class="step-row__title">Dagelijks bewegen</h3>
+              <p class="step-row__desc">Voltooi sessies, bouw streaks op en voel hoe je sterker wordt.</p>
+            </div>
+          </div>
+          <div class="step-row">
+            <span class="step-row__num">05</span>
+            <div>
+              <h3 class="step-row__title">Wekelijkse evolutie</h3>
+              <p class="step-row__desc">Het plan past zich dynamisch aan jouw energie en voortgang aan. Elke week een stap verder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 4: RESULTATEN
+       ======================================================== -->
+  <section class="panel panel--dark" id="resultaten">
+    <div class="panel__grid">
+      <div class="panel__label">
+        <span class="panel__num">03</span>
+        <span class="panel__cat">Resultaten</span>
+      </div>
+
+      <div class="panel__main">
+        <h2 class="panel__title">Niet zomaar<br />een app.<br /><em>Gevalideerd.</em></h2>
+        <p class="panel__sub">Pilootprogramma bij AZorg Aalst — 40+ patiënten, 10 weken.</p>
+      </div>
+
+      <div class="panel__aside">
+        <div class="proof-grid">
+          <div class="proof-card proof-card--big">
+            <span class="proof-card__label">Vermoeidheid</span>
+            <div class="proof-card__num">p&lt;0.001</div>
+            <div class="proof-card__sub">Cohen's d = -1.055</div>
+          </div>
+          <div class="proof-card">
+            <span class="proof-card__label">NPS score</span>
+            <div class="proof-card__num">7.4</div>
+            <div class="proof-card__sub">Patiënttevredenheid</div>
+          </div>
+          <div class="proof-card">
+            <span class="proof-card__label">Continuatie</span>
+            <div class="proof-card__num">100<span style="font-size:50%">%</span></div>
+            <div class="proof-card__sub">Volledige 10 weken</div>
+          </div>
+          <div class="proof-card proof-card--quote">
+            <svg width="28" height="20" viewBox="0 0 28 20" fill="currentColor" style="opacity:0.3;margin-bottom:0.75rem"><path d="M0 20V12C0 5.4 3.8 1.4 11.4 0l1.2 2C8.4 3 6.2 5.4 5.8 9H11V20H0ZM17 20V12C17 5.4 20.8 1.4 28.4 0l1.2 2C25.4 3 23.2 5.4 22.8 9H28V20H17Z"/></svg>
+            <p>"Na mijn behandeling wist ik echt niet hoe ik opnieuw moest beginnen. RevOnc gaf me een plan, en elke dag voelde beter."</p>
+            <strong>— Laura, 52 · pilootdeelneemster</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 5: VOOR ORGANISATIES
+       ======================================================== -->
+  <section class="panel panel--light" id="organisaties">
+    <div class="panel__grid">
+      <div class="panel__label">
+        <span class="panel__num">04</span>
+        <span class="panel__cat">Organisaties</span>
+      </div>
+
+      <div class="panel__main">
+        <h2 class="panel__title panel__title--dark">Voor organisaties<br />die het verschil<br /><em>willen maken.</em></h2>
+      </div>
+
+      <div class="panel__aside">
+        <div class="org-cards">
+          <div class="org-card">
+            <div class="org-card__icon">💊</div>
+            <div class="org-card__body">
+              <h3>Farma &amp; Biotech</h3>
+              <p>Co-brandbare patiëntbegeleiding met exporteerbare real-world evidence voor markttoelatingsdossiers.</p>
+              <span class="org-card__deal">€50K – €2M · 6–18 maanden</span>
+            </div>
+          </div>
+          <div class="org-card">
+            <div class="org-card__icon">🏥</div>
+            <div class="org-card__body">
+              <h3>Ziekenhuizen</h3>
+              <p>Digitaal verlengstuk van het zorgpad — gepersonaliseerd bewegen zonder extra belasting van uw team.</p>
+              <span class="org-card__deal">€10K – €500K · 3–12 maanden</span>
+            </div>
+          </div>
+          <div class="org-card">
+            <div class="org-card__icon">📋</div>
+            <div class="org-card__body">
+              <h3>Verzekeraars &amp; Arbo</h3>
+              <p>Verlaag verzuimduur, bied preventieve oncologische zorg en differentieer van concurrenten.</p>
+              <span class="org-card__deal">€10K – €500K · 2–12 maanden</span>
+            </div>
+          </div>
+        </div>
+        <a href="#contact" class="panel__cta-link">Plan een kennismaking →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 6: ONS VERHAAL
+       ======================================================== -->
+  <section class="panel panel--dark" id="verhaal">
+    <div class="panel__grid">
+      <div class="panel__label">
+        <span class="panel__num">05</span>
+        <span class="panel__cat">Ons Verhaal</span>
+      </div>
+      <div class="panel__main">
+        <h2 class="panel__title">Gebouwd door<br />iemand die het<br /><em>zag van binnenuit.</em></h2>
+      </div>
+      <div class="panel__aside">
+        <p class="panel__body">
+          Yorin De Smet is kinesioloog. Na zijn stages in oncologische revalidatie zag hij wat er met patiënten gebeurde na ontslag: ze kregen een pamfletje en werden aan hun lot overgelaten.
+        </p>
+        <p class="panel__body" style="margin-top:1rem">
+          RevOnc bestaat om dat gat te dichten — wetenschappelijk onderbouwd, aangedreven door technologie, gebouwd voor de patiënt.
+        </p>
+        <div class="founder-card">
+          <div class="founder-card__avatar">Y</div>
+          <div>
+            <strong class="founder-card__name">Yorin De Smet</strong>
+            <span class="founder-card__title">Founder &amp; Kinesioloog · RevOnc</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 7: CONTACT
+       ======================================================== -->
+  <section class="panel panel--hero" id="contact" style="min-height:100vh;display:flex;align-items:center;justify-content:center;">
+    <div class="contact-center" style="padding-top:0;">
+      <span class="contact-center__eyebrow">Klaar om te starten?</span>
+      <h2 class="contact-center__title">Neem je leven terug<br />na kanker.</h2>
+      <p class="contact-center__sub">
+        Patiënt, zorgverlener of organisatie — laten we kennismaken.
+      </p>
+      <a href="mailto:yorin@revonc.be?subject=Kennismaking RevOnc" class="contact-center__btn">
+        yorin@revonc.be <span>→</span>
+      </a>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__left">
+        <a href="#" class="footer__logo">
+          <img src="revonc logo.webp" alt="" />
+          <span>RevOnc</span>
+        </a>
+        <span>© 2026 RevOnc BV · Voskenslaan 464, Gent</span>
+      </div>
+      <div class="footer__right">
+        <a href="#">Privacybeleid</a>
+        <a href="#">Voorwaarden</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </footer>
+  </section>
+
+</body>
+</html>

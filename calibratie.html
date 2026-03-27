@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Droompad Calibratie</title>
+  <style>
+    body { margin: 0; background: #222; color: #fff; font-family: sans-serif; overflow-x: hidden; }
+    #container { position: relative; display: inline-block; cursor: crosshair; }
+    #image { display: block; max-width: 100vw; height: auto; opacity: 0.8; }
+    #svgOverlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+    .dot {
+      position: absolute;
+      width: 16px; height: 16px;
+      background: #00e5d0;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      box-shadow: 0 0 12px #00e5d0;
+      z-index: 20;
+    }
+    #ui {
+      position: fixed;
+      top: 20px; right: 20px;
+      background: rgba(0,0,0,0.85);
+      padding: 15px; border-radius: 8px;
+      max-width: 300px;
+      border: 1px solid #333;
+      z-index: 1000;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .btn-group { display: flex; gap: 8px; margin-bottom: 10px; }
+    button {
+      background: #00e5d0; color: #000; border: none; padding: 10px;
+      cursor: pointer; font-weight: bold; flex: 1; border-radius: 4px; font-size: 13px;
+    }
+    textarea {
+      width: 100%; height: 200px; box-sizing: border-box; background: #111; color: #00e5d0;
+      border: 1px solid #444; padding: 8px; font-family: monospace; font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="ui">
+    <h3 style="margin-top:0;">Calibratie</h3>
+    <p style="font-size: 13px; color:#ccc;">Klik op de screenshot. De lijn wordt nu exact zo vloeiend als in de app (Catmull-Rom spline).</p>
+    
+    <div class="btn-group">
+      <button onclick="copyData()">Kopieer Data</button>
+    </div>
+    <div class="btn-group">
+      <button onclick="undo()" style="background: #e59500; color:#fff;">Ongedaan Maken</button>
+      <button onclick="clearData()" style="background: #444; color: #fff;">Wis Alles</button>
+    </div>
+    
+    <textarea id="output" readonly></textarea>
+  </div>
+
+  <div id="container">
+    <img id="image" src="screencapture-file-X-Downloads-revonc-app-revonc-site-index-html-2026-03-24-16_58_27.png" alt="Screenshot">
+    <svg id="svgOverlay">
+      <!-- Glow effect path -->
+      <path id="svgPathGlow" fill="none" stroke="rgba(0, 229, 208, 0.3)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- Main solid path -->
+      <path id="svgPath" fill="none" stroke="#00e5d0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </div>
+
+  <script>
+    const container = document.getElementById('container');
+    const image = document.getElementById('image');
+    const output = document.getElementById('output');
+    const svgOverlay = document.getElementById('svgOverlay');
+    const svgPath = document.getElementById('svgPath');
+    const svgPathGlow = document.getElementById('svgPathGlow');
+    
+    let points = [];
+    
+    container.addEventListener('click', (e) => {
+      const rect = image.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const pctX = x / image.width;
+      const pctY = y / image.height;
+      
+      points.push({ pctX: pctX.toFixed(4), pctY: pctY.toFixed(4), x: Math.round(x), y: Math.round(y) });
+      
+      drawPoints();
+      updateOutput();
+    });
+    
+    function drawPoints() {
+      // Clear old dots
+      document.querySelectorAll('.dot').forEach(el => el.remove());
+      
+      if (points.length < 2) {
+        svgPath.setAttribute('d', '');
+        svgPathGlow.setAttribute('d', '');
+      } else {
+        // Draw Catmull-Rom spline (exact same math as main_v2.js)
+        let d = 'M ' + points[0].x.toFixed(1) + ' ' + points[0].y.toFixed(1);
+
+        for (let i = 0; i < points.length - 1; i++) {
+          const p0 = points[i - 1] || points[i];
+          const p1 = points[i];
+          const p2 = points[i + 1];
+          const p3 = points[i + 2] || points[i + 1];
+
+          // alpha = 0.5 equivalent factor / 6
+          const cp1x = p1.x + (p2.x - p0.x) / 6;
+          const cp1y = p1.y + (p2.y - p0.y) / 6;
+          const cp2x = p2.x - (p3.x - p1.x) / 6;
+          const cp2y = p2.y - (p3.y - p1.y) / 6;
+
+          d += ' C ' +
+            cp1x.toFixed(1) + ' ' + cp1y.toFixed(1) + ', ' +
+            cp2x.toFixed(1) + ' ' + cp2y.toFixed(1) + ', ' +
+            p2.x.toFixed(1) + ' ' + p2.y.toFixed(1);
+        }
+        svgPath.setAttribute('d', d);
+        svgPathGlow.setAttribute('d', d);
+      }
+
+      // Draw Dots
+      for (let i = 0; i < points.length; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'dot';
+        dot.style.left = points[i].x + 'px';
+        dot.style.top = points[i].y + 'px';
+        
+        const txt = document.createElement('span');
+        txt.style.position = 'absolute';
+        txt.style.left = '20px';
+        txt.style.top = '-8px';
+        txt.style.color = '#fff';
+        txt.style.fontSize = '12px';
+        txt.style.fontWeight = 'bold';
+        txt.style.textShadow = '0 0 4px #000, 0 0 6px #000';
+        txt.innerText = `${i+1}`;
+        dot.appendChild(txt);
+        
+        container.appendChild(dot);
+      }
+    }
+    
+    function updateOutput() {
+      const arr = points.map(p => `    [${p.pctX}, ${p.pctY}],`);
+      output.value = "  const REF_PATH = [\n" + arr.join("\n") + "\n  ];";
+    }
+    
+    function copyData() {
+      navigator.clipboard.writeText(output.value);
+      alert('Data Is Gekopieerd!');
+    }
+    
+    function undo() {
+      if (points.length > 0) {
+        points.pop();
+        drawPoints();
+        updateOutput();
+      }
+    }
+
+    function clearData() {
+      points = [];
+      drawPoints();
+      updateOutput();
+    }
+  </script>
+</body>
+</html>
