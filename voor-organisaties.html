@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RevOnc voor organisaties — Digitale nazorg als dienst</title>
-  <meta name="description" content="RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een digitaal nazorgplatform voor kankerpatienten. Standalone, klinisch gevalideerd, geen IT-integratie nodig." />
+  <meta name="description" content="RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een digitaal nazorgplatform voor kankerpatienten. Standalone, bewezen in pilootstudie, geen IT-integratie nodig." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
@@ -438,6 +438,67 @@
       z-index: 1;
     }
 
+    /* ---------- Contact Form ---------- */
+    .b2b-form {
+      width: 100%;
+      max-width: 28rem;
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .b2b-form__input {
+      width: 100%;
+      padding: 0.85rem 1.15rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 0.75rem;
+      color: var(--white);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .b2b-form__input::placeholder {
+      color: var(--white-55);
+    }
+    .b2b-form__input:focus {
+      border-color: var(--teal-500);
+      box-shadow: 0 0 0 3px rgba(46,123,120,0.15);
+    }
+    .b2b-form__submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 2.2rem;
+      background: var(--orange-cta);
+      color: var(--white);
+      font-weight: 700;
+      border-radius: 3rem;
+      border: none;
+      font-size: 1rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+    }
+    .b2b-form__submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,142,46,0.3);
+    }
+    .b2b-form__note {
+      font-size: 0.78rem;
+      color: var(--white-55);
+      margin-top: 0.25rem;
+    }
+
     /* ---------- Responsive ---------- */
     @media (max-width: 768px) {
       .b2b-why__inner {
@@ -448,6 +509,9 @@
         grid-template-columns: repeat(2, 1fr);
       }
       .b2b-grid {
+        grid-template-columns: 1fr;
+      }
+      .b2b-form__row {
         grid-template-columns: 1fr;
       }
     }
@@ -516,9 +580,20 @@
     <span class="b2b-hero__eyebrow">Voor organisaties</span>
     <h1 class="b2b-hero__title">Digitale nazorg<br />als <em>dienst.</em></h1>
     <p class="b2b-hero__sub">
-      RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een kant-en-klaar digitaal nazorgplatform. Standalone, klinisch gevalideerd, geen IT-integratie nodig.
+      RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een kant-en-klaar digitaal nazorgplatform. Bewezen in pilootstudie, geen IT-integratie nodig.
     </p>
-    <a href="mailto:yorin@revonc.be?subject=Kennismaking organisaties" class="b2b-hero__cta">Plan een kennismaking <span>&#8594;</span></a>
+    <form class="b2b-form" action="mailto:yorin@revonc.be" method="POST" enctype="text/plain">
+      <div class="b2b-form__row">
+        <input type="text" class="b2b-form__input" name="naam" placeholder="Naam" required />
+        <input type="text" class="b2b-form__input" name="bedrijf" placeholder="Bedrijf / Organisatie" required />
+      </div>
+      <div class="b2b-form__row">
+        <input type="email" class="b2b-form__input" name="email" placeholder="E-mailadres" required />
+        <input type="tel" class="b2b-form__input" name="telefoon" placeholder="Telefoonnummer" />
+      </div>
+      <button type="submit" class="b2b-form__submit">Plan een kennismaking <span>&#8594;</span></button>
+      <p class="b2b-form__note">We nemen binnen 24 uur contact met u op.</p>
+    </form>
     <div class="b2b-hero__scroll">
       <span>Scroll</span>
       <div class="b2b-hero__scroll-line"></div>
@@ -548,7 +623,6 @@
         </p>
         <div class="b2b-card__meta">
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 6 - 18 maanden</span>
-          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5L12 2z"/></svg> 50K - 2M</span>
         </div>
       </div>
 
@@ -563,7 +637,6 @@
         </p>
         <div class="b2b-card__meta">
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 3 - 12 maanden</span>
-          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5L12 2z"/></svg> 10K - 500K</span>
         </div>
       </div>
 
@@ -578,7 +651,6 @@
         </p>
         <div class="b2b-card__meta">
           <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 2 - 12 maanden</span>
-          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5L12 2z"/></svg> 10K - 500K</span>
         </div>
       </div>
 
@@ -612,8 +684,8 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div class="b2b-why__text">
-            <h3>Klinisch gevalideerd</h3>
-            <p>Pilootstudie bij AZorg Aalst met 43 patiënten. Significante vermoeidheidsreductie. 8.1/10 tevredenheid.</p>
+            <h3>Bewezen in pilootstudie</h3>
+            <p>Pilootstudie bij AZorg Aalst met 43 patiënten. Significante vermoeidheidsreductie. 8.1/10 tevredenheid. Op weg naar MDR-proof.</p>
           </div>
         </div>
         <div class="b2b-why__item" data-reveal>
@@ -653,7 +725,7 @@
   <div class="b2b-divider"></div>
   <section class="panel panel--dark b2b-proof">
     <div class="b2b-proof__bg"></div>
-    <h2 class="b2b-proof__title">De cijfers van onze <em>pilootstudie.</em></h2>
+    <h2 class="b2b-proof__title">Onze <em>pilootresultaten.</em></h2>
     <div class="b2b-proof__row">
       <div class="b2b-proof__stat" data-reveal>
         <span class="b2b-proof__num">43</span>
@@ -682,12 +754,22 @@
     <div class="panel__bg panel__bg--contact"></div>
     <div class="b2b-cta__glow b2b-cta__glow--1"></div>
     <div class="b2b-cta__glow b2b-cta__glow--2"></div>
-    <h2 class="b2b-cta__title">Klaar om samen <em>te starten?</em></h2>
+    <h2 class="b2b-cta__title">Ontvang het volledige <em>pilootrapport.</em></h2>
     <p class="b2b-cta__sub">
-      Geen verkooppraatje, gewoon een eerlijk gesprek over hoe digitale nazorg past bij uw organisatie.
+      Wij sturen u de volledige resultaten van onze pilootstudie. Geen verkooppraatje, gewoon data.
     </p>
-    <a href="mailto:yorin@revonc.be?subject=Kennismaking organisaties" class="b2b-hero__cta" style="position:relative;z-index:1">Plan een kennismaking <span>&#8594;</span></a>
-    <p style="margin-top:2rem;opacity:0.5;font-size:0.85rem;position:relative;z-index:1">yorin@revonc.be</p>
+    <form class="b2b-form" action="mailto:yorin@revonc.be" method="POST" enctype="text/plain">
+      <div class="b2b-form__row">
+        <input type="text" class="b2b-form__input" name="naam" placeholder="Naam" required />
+        <input type="text" class="b2b-form__input" name="bedrijf" placeholder="Bedrijf / Organisatie" required />
+      </div>
+      <div class="b2b-form__row">
+        <input type="email" class="b2b-form__input" name="email" placeholder="E-mailadres" required />
+        <input type="tel" class="b2b-form__input" name="telefoon" placeholder="Telefoonnummer" />
+      </div>
+      <button type="submit" class="b2b-form__submit">Vraag het rapport aan <span>&#8594;</span></button>
+      <p class="b2b-form__note">We sturen het rapport binnen 24 uur naar uw e-mail.</p>
+    </form>
 
     <!-- Footer bar -->
     <footer class="footer" style="position:absolute;bottom:0;left:0;right:0">
