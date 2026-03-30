@@ -1,0 +1,35 @@
+# Traditional search crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# AI crawlers - ALLOW ALL
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# Block spam crawlers
+User-agent: Bytespider
+Disallow: /
+
+# Default
+User-agent: *
+Allow: /
+
+Sitemap: https://revonc.be/sitemap.xml

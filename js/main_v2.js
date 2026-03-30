@@ -48,8 +48,13 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   // Close on nav link click and scroll to target
   $$('.menu-overlay__link', overlay).forEach(link => {
     link.addEventListener('click', e => {
-      e.preventDefault();
       const href = link.getAttribute('href');
+      // Allow external links (other pages) to navigate normally
+      if (!href.startsWith('#')) {
+        close();
+        return;
+      }
+      e.preventDefault();
       close();
       const target = document.querySelector(href);
       if (target) {

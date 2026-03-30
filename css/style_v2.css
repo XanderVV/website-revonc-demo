@@ -389,10 +389,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex: 1;
   display: grid;
   grid-template-columns: 140px 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: auto;
   gap: 0;
   padding: var(--nav-h) 2.5rem 3rem;
-  align-items: center;
+  align-items: start;
+  align-content: center;
   position: relative;
   z-index: 3;
 }
@@ -1402,6 +1403,21 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   flex-shrink: 0;
 }
 
+.founder-card__avatar--photo {
+  object-fit: cover;
+  background: none;
+  border: 2px solid var(--teal-500);
+}
+
+.founder-card__avatar--placeholder {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--white-55);
+  border: 2px dashed var(--teal-500);
+  background: var(--teal-glow);
+}
+
 .founder-card__name {
   display: block;
   font-size: 0.9rem;
@@ -1601,12 +1617,56 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   .nav { padding: 0 1.5rem; }
 }
 
+@media (max-width: 768px) {
+  /* Mobile menu: smaller font */
+  .menu-overlay__link {
+    font-size: clamp(1.6rem, 5vw, 3rem);
+  }
+}
+
 @media (max-width: 480px) {
   .hero-content__title { font-size: 2.2rem; }
   .panel__title { font-size: 2rem; }
   .contact-center__title { font-size: 2.5rem; }
   .proof-card__num { font-size: 2rem; }
   .proof-card--big .proof-card__num { font-size: 2.5rem; }
+}
+
+/* ============================================================
+   17b. TRUST BAR — horizontal loop animation
+   ============================================================ */
+.trust-track {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.trust-track__inner {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  white-space: nowrap;
+  animation: trustScroll 30s linear infinite;
+  width: max-content;
+}
+
+.trust-track__inner span {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  opacity: 0.65;
+  flex-shrink: 0;
+}
+
+@keyframes trustScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause on hover */
+.trust-track:hover .trust-track__inner {
+  animation-play-state: paused;
 }
 
 /* ============================================================

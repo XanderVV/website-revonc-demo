@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RevOnc voor organisaties — Digitale nazorg als dienst</title>
+  <meta name="description" content="RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een digitaal nazorgplatform voor kankerpatienten. Standalone, klinisch gevalideerd, geen IT-integratie nodig." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style_v2.css?v=10" />
+  <style>
+    /* ================================================
+       B2B PAGE — all classes prefixed b2b- to avoid
+       collisions with homepage style_v2.css
+       ================================================ */
+
+    /* ---------- Hero ---------- */
+    .b2b-hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .b2b-hero__glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .b2b-hero__glow--teal {
+      background: var(--teal-500);
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: b2bFloat 8s ease-in-out infinite;
+    }
+    .b2b-hero__glow--orange {
+      background: var(--orange-cta);
+      bottom: -20%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      opacity: 0.1;
+      animation: b2bFloat 10s ease-in-out infinite reverse;
+    }
+    @keyframes b2bFloat {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-30px); }
+    }
+    .b2b-hero__eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-500);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-hero__title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      margin-bottom: 1.5rem;
+      max-width: 44rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-hero__title em {
+      color: var(--teal-500);
+      font-style: normal;
+    }
+    .b2b-hero__sub {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--white-80);
+      max-width: 36rem;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-hero__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.95rem 2.2rem;
+      background: var(--orange-cta);
+      color: var(--white);
+      font-weight: 700;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-hero__cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,142,46,0.3);
+    }
+    .b2b-hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white-55);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .b2b-hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--teal-500), transparent);
+      animation: b2bScrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes b2bScrollPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+
+    /* ---------- Breathing Divider ---------- */
+    .b2b-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--teal-500) 20%, var(--orange-cta) 50%, var(--teal-500) 80%, transparent 100%);
+      opacity: 0.25;
+      margin: 0;
+    }
+
+    /* ---------- Segment Cards ---------- */
+    .b2b-segments {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+    .b2b-segments__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 20%, rgba(46,123,120,0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 80%, rgba(215,106,4,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .b2b-segments__header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-segments__eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-500);
+      margin-bottom: 1rem;
+    }
+    .b2b-segments__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+    }
+    .b2b-segments__title em {
+      color: var(--teal-500);
+      font-style: normal;
+    }
+    .b2b-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 72rem;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1.25rem;
+      padding: 2.5rem 2rem;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .b2b-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal-500), var(--orange-cta));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .b2b-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(46,123,120,0.4);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px rgba(46,123,120,0.08);
+    }
+    .b2b-card:hover::before {
+      opacity: 1;
+    }
+    .b2b-card__icon {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.85rem;
+      background: rgba(46,123,120,0.12);
+      color: var(--teal-500);
+      margin-bottom: 1.5rem;
+    }
+    .b2b-card__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.85rem;
+    }
+    .b2b-card__desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--white-80);
+      margin-bottom: 1.25rem;
+    }
+    .b2b-card__meta {
+      font-size: 0.8rem;
+      color: var(--white-55);
+      display: flex;
+      gap: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .b2b-card__meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* ---------- Why RevOnc ---------- */
+    .b2b-why {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+    .b2b-why__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(46,123,120,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .b2b-why__inner {
+      max-width: 60rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-why__left {}
+    .b2b-why__eyebrow {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-500);
+      margin-bottom: 1rem;
+    }
+    .b2b-why__title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      line-height: 1.12;
+    }
+    .b2b-why__title em {
+      color: var(--teal-500);
+      font-style: normal;
+    }
+    .b2b-why__subtitle {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--white-80);
+    }
+    .b2b-why__list {
+      display: grid;
+      gap: 1.75rem;
+    }
+    .b2b-why__item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .b2b-why__check {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(46,123,120,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal-500);
+      margin-top: 0.1rem;
+    }
+    .b2b-why__text h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .b2b-why__text p {
+      font-size: 0.9rem;
+      color: var(--white-80);
+      line-height: 1.65;
+    }
+
+    /* ---------- Proof Strip ---------- */
+    .b2b-proof {
+      padding: 5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .b2b-proof__bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(46,123,120,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .b2b-proof__title {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-proof__title em {
+      color: var(--teal-500);
+      font-style: normal;
+    }
+    .b2b-proof__row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 56rem;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-proof__stat {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 1rem;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .b2b-proof__stat:hover {
+      transform: translateY(-4px);
+      border-color: rgba(46,123,120,0.3);
+    }
+    .b2b-proof__num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--teal-500);
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+    .b2b-proof__lbl {
+      font-size: 0.82rem;
+      color: var(--white-55);
+      line-height: 1.4;
+    }
+
+    /* ---------- CTA ---------- */
+    .b2b-cta {
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .b2b-cta__glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.1;
+      pointer-events: none;
+    }
+    .b2b-cta__glow--1 {
+      background: var(--teal-500);
+      top: 50%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+    }
+    .b2b-cta__glow--2 {
+      background: var(--orange-cta);
+      top: 60%;
+      right: 20%;
+      width: 300px;
+      height: 300px;
+    }
+    .b2b-cta__title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-cta__title em {
+      color: var(--teal-500);
+      font-style: normal;
+    }
+    .b2b-cta__sub {
+      font-size: 1.05rem;
+      color: var(--white-80);
+      margin-bottom: 2.5rem;
+      max-width: 32rem;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 768px) {
+      .b2b-why__inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .b2b-proof__row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .b2b-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 480px) {
+      .b2b-proof__row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================
+       PARTICLE CANVAS (same as homepage)
+       ================================================ -->
+  <canvas id="sparksCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0"></canvas>
+
+  <!-- ================================================
+       NAVIGATION
+       ================================================ -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" aria-label="RevOnc">
+      <img src="revonc logo.webp" alt="" class="nav__logo-img" aria-hidden="true" />
+      <span class="nav__logo-text">RevOnc</span>
+      <span class="nav__logo-divider"></span>
+      <span class="nav__logo-tagline">Jouw herstelpad na kanker</span>
+    </a>
+
+    <div class="nav__links" id="navLinks">
+      <a href="index.html" class="nav__link">Home</a>
+      <a href="index.html#resultaten" class="nav__link">Resultaten</a>
+      <a href="#" class="nav__link active">Organisaties</a>
+      <a href="index.html#verhaal" class="nav__link">Ons verhaal</a>
+      <a href="index.html#faq" class="nav__link">FAQ</a>
+      <a href="index.html#contact" class="nav__link nav__link--cta">Contact</a>
+    </div>
+
+    <button class="nav__menu-btn" id="menuBtn" aria-expanded="false" aria-label="Menu openen">
+      Menu <span class="nav__plus" id="menuPlus">+</span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu overlay -->
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+    <nav class="menu-overlay__nav">
+      <a href="index.html" class="menu-overlay__link" data-num="01">Home</a>
+      <a href="index.html#resultaten" class="menu-overlay__link" data-num="02">Resultaten</a>
+      <a href="#" class="menu-overlay__link" data-num="03">Organisaties</a>
+      <a href="index.html#verhaal" class="menu-overlay__link" data-num="04">Ons verhaal</a>
+      <a href="index.html#faq" class="menu-overlay__link" data-num="05">FAQ</a>
+      <a href="index.html#contact" class="menu-overlay__link" data-num="06">Contact</a>
+    </nav>
+    <div class="menu-overlay__footer">
+      <span>yorin@revonc.be</span>
+      <span>Voskenslaan 464, Gent</span>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       HERO
+       ======================================================== -->
+  <section class="panel panel--hero b2b-hero">
+    <div class="panel__bg"></div>
+    <div class="b2b-hero__glow b2b-hero__glow--teal"></div>
+    <div class="b2b-hero__glow b2b-hero__glow--orange"></div>
+    <span class="b2b-hero__eyebrow">Voor organisaties</span>
+    <h1 class="b2b-hero__title">Digitale nazorg<br />als <em>dienst.</em></h1>
+    <p class="b2b-hero__sub">
+      RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een kant-en-klaar digitaal nazorgplatform. Standalone, klinisch gevalideerd, geen IT-integratie nodig.
+    </p>
+    <a href="mailto:yorin@revonc.be?subject=Kennismaking organisaties" class="b2b-hero__cta">Plan een kennismaking <span>&#8594;</span></a>
+    <div class="b2b-hero__scroll">
+      <span>Scroll</span>
+      <div class="b2b-hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SEGMENT CARDS
+       ======================================================== -->
+  <div class="b2b-divider"></div>
+  <section class="panel panel--dark b2b-segments">
+    <div class="b2b-segments__bg"></div>
+    <div class="b2b-segments__header">
+      <p class="b2b-segments__eyebrow">Onze segmenten</p>
+      <h2 class="b2b-segments__title">Voor elk type organisatie<br />een passend <em>model.</em></h2>
+    </div>
+    <div class="b2b-grid">
+
+      <!-- Farma & Biotech -->
+      <div class="b2b-card" data-reveal>
+        <div class="b2b-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5A2.25 2.25 0 008.25 22.5h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-6 8.25h9m-9 3h9m-9 3h5.25"/></svg>
+        </div>
+        <h3 class="b2b-card__title">Farma en biotech</h3>
+        <p class="b2b-card__desc">
+          Uw behandeling stopt niet bij het laatste infuus. Co-brandbare patiëntbegeleiding met exporteerbare real-world evidence voor markttoelatingsdossiers.
+        </p>
+        <div class="b2b-card__meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 6 - 18 maanden</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5L12 2z"/></svg> 50K - 2M</span>
+        </div>
+      </div>
+
+      <!-- Ziekenhuizen -->
+      <div class="b2b-card" data-reveal>
+        <div class="b2b-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1"/><path d="M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg>
+        </div>
+        <h3 class="b2b-card__title">Ziekenhuizen</h3>
+        <p class="b2b-card__desc">
+          Uw patiënten verdwijnen na ontslag uit beeld. RevOnc is het digitale verlengstuk van uw zorgpad. Gepersonaliseerd bewegen zonder extra belasting van uw team.
+        </p>
+        <div class="b2b-card__meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 3 - 12 maanden</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5L12 2z"/></svg> 10K - 500K</span>
+        </div>
+      </div>
+
+      <!-- Verzekeraars & Arbo -->
+      <div class="b2b-card" data-reveal>
+        <div class="b2b-card__icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="b2b-card__title">Verzekeraars en arbo</h3>
+        <p class="b2b-card__desc">
+          Verlaag verzuimduur, bied preventieve oncologische zorg en differentieer van concurrenten. Meetbare impact op werkhervatting.
+        </p>
+        <div class="b2b-card__meta">
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 2 - 12 maanden</span>
+          <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17l10 5 10-5M2 12l10 5 10-5M12 2L2 7l10 5 10-5L12 2z"/></svg> 10K - 500K</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================
+       WHY REVONC FOR ORGS
+       ======================================================== -->
+  <div class="b2b-divider"></div>
+  <section class="panel panel--dark b2b-why">
+    <div class="b2b-why__bg"></div>
+    <div class="b2b-why__inner">
+      <div class="b2b-why__left">
+        <p class="b2b-why__eyebrow">Waarom RevOnc</p>
+        <h2 class="b2b-why__title">Waarom organisaties<br />kiezen voor <em>RevOnc.</em></h2>
+        <p class="b2b-why__subtitle">Geen maanden onboarding. Geen IT-projecten. Resultaat vanaf dag 1.</p>
+      </div>
+      <div class="b2b-why__list">
+        <div class="b2b-why__item" data-reveal>
+          <div class="b2b-why__check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="b2b-why__text">
+            <h3>Geen IT-integratie nodig</h3>
+            <p>Patiënten downloaden de app zelf. Geen EMR-koppeling, geen IT-project. Integratie is optioneel in fase 2.</p>
+          </div>
+        </div>
+        <div class="b2b-why__item" data-reveal>
+          <div class="b2b-why__check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="b2b-why__text">
+            <h3>Klinisch gevalideerd</h3>
+            <p>Pilootstudie bij AZorg Aalst met 43 patiënten. Significante vermoeidheidsreductie. 8.1/10 tevredenheid.</p>
+          </div>
+        </div>
+        <div class="b2b-why__item" data-reveal>
+          <div class="b2b-why__check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="b2b-why__text">
+            <h3>Real-world evidence</h3>
+            <p>Geaggregeerde inzichten over patiëntuitkomsten. Bruikbaar voor markttoelating, kwaliteitsrapportage en analyses.</p>
+          </div>
+        </div>
+        <div class="b2b-why__item" data-reveal>
+          <div class="b2b-why__check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="b2b-why__text">
+            <h3>GDPR-compliant</h3>
+            <p>Data gehost op AWS Frankfurt. Geen individuele patiëntdata gedeeld met derden.</p>
+          </div>
+        </div>
+        <div class="b2b-why__item" data-reveal>
+          <div class="b2b-why__check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="b2b-why__text">
+            <h3>Co-branding mogelijk</h3>
+            <p>Uw logo, uw kleuren, uw patiënten. RevOnc kan volledig onder uw merk draaien.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PROOF STRIP
+       ======================================================== -->
+  <div class="b2b-divider"></div>
+  <section class="panel panel--dark b2b-proof">
+    <div class="b2b-proof__bg"></div>
+    <h2 class="b2b-proof__title">De cijfers van onze <em>pilootstudie.</em></h2>
+    <div class="b2b-proof__row">
+      <div class="b2b-proof__stat" data-reveal>
+        <span class="b2b-proof__num">43</span>
+        <span class="b2b-proof__lbl">Patiënten geëncludeerd</span>
+      </div>
+      <div class="b2b-proof__stat" data-reveal>
+        <span class="b2b-proof__num">10 wk</span>
+        <span class="b2b-proof__lbl">Programma AZorg Aalst</span>
+      </div>
+      <div class="b2b-proof__stat" data-reveal>
+        <span class="b2b-proof__num">8.1/10</span>
+        <span class="b2b-proof__lbl">Patiënttevredenheid</span>
+      </div>
+      <div class="b2b-proof__stat" data-reveal>
+        <span class="b2b-proof__num">83%</span>
+        <span class="b2b-proof__lbl">Wil doorgaan na programma</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CTA
+       ======================================================== -->
+  <div class="b2b-divider"></div>
+  <section class="panel panel--hero b2b-cta">
+    <div class="panel__bg panel__bg--contact"></div>
+    <div class="b2b-cta__glow b2b-cta__glow--1"></div>
+    <div class="b2b-cta__glow b2b-cta__glow--2"></div>
+    <h2 class="b2b-cta__title">Klaar om samen <em>te starten?</em></h2>
+    <p class="b2b-cta__sub">
+      Geen verkooppraatje, gewoon een eerlijk gesprek over hoe digitale nazorg past bij uw organisatie.
+    </p>
+    <a href="mailto:yorin@revonc.be?subject=Kennismaking organisaties" class="b2b-hero__cta" style="position:relative;z-index:1">Plan een kennismaking <span>&#8594;</span></a>
+    <p style="margin-top:2rem;opacity:0.5;font-size:0.85rem;position:relative;z-index:1">yorin@revonc.be</p>
+
+    <!-- Footer bar -->
+    <footer class="footer" style="position:absolute;bottom:0;left:0;right:0">
+      <div class="footer__left">
+        <a href="index.html" class="footer__logo" aria-label="RevOnc">
+          <img src="revonc logo.webp" alt="" class="nav__logo-img" aria-hidden="true" />
+          <span>RevOnc</span>
+        </a>
+        <span class="footer__copy">&copy; 2026 RevOnc BV &middot; Voskenslaan 464, 9000 Gent</span>
+      </div>
+      <div class="footer__right">
+        <a href="mailto:yorin@revonc.be">yorin@revonc.be</a>
+        <a href="https://revonc.be/privacy" target="_blank" rel="noopener">Privacybeleid</a>
+        <a href="https://revonc.be/voorwaarden" target="_blank" rel="noopener">Voorwaarden</a>
+        <a href="https://www.linkedin.com/company/revonc" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ================================================
+       SCRIPTS
+       ================================================ -->
+  <script src="js/full-page-sparks.js?v=1"></script>
+  <script>
+    /* B2B page JS — menu, nav, reveal animations */
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => [...document.querySelectorAll(sel)];
+
+    // Menu overlay
+    (function() {
+      const btn = $('#menuBtn'), overlay = $('#menuOverlay');
+      if (!btn || !overlay) return;
+      const open = () => { overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); btn.classList.add('open'); btn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+      const close = () => { overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+      btn.addEventListener('click', () => overlay.classList.contains('open') ? close() : open());
+      $$('.menu-overlay__link').forEach(l => l.addEventListener('click', () => close()));
+      document.addEventListener('keydown', e => { if (e.key==='Escape') close(); });
+    })();
+
+    // Nav bg on scroll
+    (function() {
+      const nav = $('#nav');
+      if (!nav) return;
+      const update = () => nav.classList.toggle('bg--visible', window.scrollY > 40);
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+
+    // Staggered reveal on scroll
+    (function() {
+      const targets = $$('[data-reveal]');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      targets.forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = `opacity 0.7s ${0.1 * (i % 5)}s cubic-bezier(0.22,1,0.36,1), transform 0.7s ${0.1 * (i % 5)}s cubic-bezier(0.22,1,0.36,1)`;
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>

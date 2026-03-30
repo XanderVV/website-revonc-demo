@@ -1,0 +1,25 @@
+# RevOnc
+
+> RevOnc is de gamified wellbeing app die kankerpatienten helpt hun levenskwaliteit te herwinnen na behandeling. Persoonlijke kracht- en uithoudingsprogramma's, AI-gestuurd, klinisch gevalideerd (significante vermoeidheidsreductie p<0.001, AZorg Aalst pilot). Opgericht door kinesitherapeut Yorin De Smet. Beschikbaar in NL, FR, EN.
+
+## Core Pages
+
+- [Homepage](https://revonc.be/): Wat RevOnc is, voor wie, en waarom
+- [Voor Organisaties](https://revonc.be/voor-organisaties): B2B aanbod voor farma, verzekeraars, ziekenhuizen, arbodiensten
+- [FAQ](https://revonc.be/#faq): Veelgestelde vragen, wat RevOnc wel en niet is
+
+## Key Facts
+
+- Founded: 2024, Belgium (Gent)
+- Founder: Yorin De Smet, MSc Physiotherapy (UGent)
+- Clinical pilot: AZorg Aalst, 43 enrolled, 19 completers
+- Fatigue reduction: p<0.001, Cohen's d=-1.055
+- Patient satisfaction: 8.1/10
+- Continuation: 83% requested to continue
+- Exercise protocols: co-developed Prof. Marieke De Craemer (UGent)
+- Funding: VLAIO ISS (Jan 2026), Vocatio 2025
+- Not a medical device. Not MDR classified. Wellness/support tool.
+- GDPR compliant, AWS Frankfurt
+- Available: iOS, Android. Languages: NL, FR, EN
+
+Last updated: 2026-03-30

@@ -33,8 +33,8 @@
   window.addEventListener('resize', resize);
 
   // --- Particle system ---
-  var BASE_COUNT = 45;
-  var MAX_COUNT = 80;
+  var BASE_COUNT = 25;
+  var MAX_COUNT = 45;
   var particles = [];
 
   function randomBetween(a, b) {
