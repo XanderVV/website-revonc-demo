@@ -582,7 +582,7 @@
     <p class="b2b-hero__sub">
       RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een kant-en-klaar digitaal nazorgplatform. Bewezen in pilootstudie, geen IT-integratie nodig.
     </p>
-    <form class="b2b-form" action="mailto:yorin@revonc.be" method="POST" enctype="text/plain">
+    <form class="b2b-form" onsubmit="return sendB2BForm(this, 'Kennismakingsverzoek via RevOnc website')">
       <div class="b2b-form__row">
         <input type="text" class="b2b-form__input" name="naam" placeholder="Naam" required />
         <input type="text" class="b2b-form__input" name="bedrijf" placeholder="Bedrijf / Organisatie" required />
@@ -758,7 +758,7 @@
     <p class="b2b-cta__sub">
       Wij sturen u de volledige resultaten van onze pilootstudie. Geen verkooppraatje, gewoon data.
     </p>
-    <form class="b2b-form" action="mailto:yorin@revonc.be" method="POST" enctype="text/plain">
+    <form class="b2b-form" onsubmit="return sendB2BForm(this, 'Aanvraag pilootrapport via RevOnc website')">
       <div class="b2b-form__row">
         <input type="text" class="b2b-form__input" name="naam" placeholder="Naam" required />
         <input type="text" class="b2b-form__input" name="bedrijf" placeholder="Bedrijf / Organisatie" required />
@@ -837,6 +837,24 @@
         observer.observe(el);
       });
     })();
+
+    // Form submit via mailto (avoids browser security warning)
+    window.sendB2BForm = function(form, subject) {
+      const naam = form.naam.value.trim();
+      const bedrijf = form.bedrijf.value.trim();
+      const email = form.email.value.trim();
+      const telefoon = form.telefoon.value.trim();
+      const body = [
+        'Naam: ' + naam,
+        'Bedrijf: ' + bedrijf,
+        'E-mail: ' + email,
+        telefoon ? 'Telefoon: ' + telefoon : ''
+      ].filter(Boolean).join('\n');
+      window.location.href = 'mailto:yorin@revonc.be'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+      return false;
+    };
   </script>
 </body>
 </html>
