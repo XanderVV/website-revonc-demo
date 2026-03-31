@@ -1553,6 +1553,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 768px) {
   .contact-ring { width: 90px; height: 90px; bottom: 1.5rem; right: 1.5rem; }
+  .contact-ring__text { width: 90px; height: 90px; }
   .contact-ring__arrow { width: 36px; height: 36px; }
 
   .panel__grid {
@@ -1972,6 +1973,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @media (max-width: 768px) {
   .dp { display: none; }
   .dp__mood { display: none; }
+  .dp__stone { display: none !important; }
 }
 
 /* ============================================================

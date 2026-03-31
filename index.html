@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style_v2.css?v=13" />
+  <link rel="stylesheet" href="css/style_v2.css?v=14" />
 
   <!-- FAQPage Schema (JSON-LD) for GEO/SEO -->
   <script type="application/ld+json">
@@ -643,6 +643,11 @@
     var device = getDeviceType();
     if (device === 'ios' && IOS_URL !== '#') { window.location.href = IOS_URL; return; }
     if (device === 'android' && ANDROID_URL !== '#') { window.location.href = ANDROID_URL; return; }
+    if (device !== 'desktop') {
+      // Mobile but no store URL yet — show coming soon toast
+      showToast('De app is binnenkort beschikbaar in de App Store en Google Play!');
+      return;
+    }
     openQrModal();
   }
 
@@ -658,6 +663,15 @@
   }
 
   function _qrEsc(e) { if (e.key === 'Escape') closeQrModal(); }
+
+  function showToast(msg) {
+    var t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#1BB0AA;color:#fff;padding:1rem 1.5rem;border-radius:0.75rem;font-size:0.95rem;font-weight:600;z-index:9999;opacity:0;transition:opacity 0.3s;max-width:90vw;text-align:center';
+    document.body.appendChild(t);
+    requestAnimationFrame(function() { t.style.opacity = '1'; });
+    setTimeout(function() { t.style.opacity = '0'; setTimeout(function() { t.remove(); }, 300); }, 3500);
+  }
 
   document.getElementById('qrModal').addEventListener('click', function(e) {
     if (e.target === this) closeQrModal();
