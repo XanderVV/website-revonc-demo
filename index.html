@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style_v2.css?v=10" />
+  <link rel="stylesheet" href="css/style_v2.css?v=13" />
 
   <!-- FAQPage Schema (JSON-LD) for GEO/SEO -->
   <script type="application/ld+json">
@@ -21,7 +21,7 @@
         "name": "Wat is RevOnc?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "RevOnc is een wellbeing app die je helpt sterker worden na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat van jouw niveau, samengesteld door klinische expertise en AI. Klinisch gevalideerd in een pilootstudie bij AZorg Aalst (43 patiënten, 10 weken). Gratis beschikbaar op iOS en Android."
+          "text": "RevOnc is een wellbeing app die je begeleidt bij je herstel na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat van jouw niveau, ontwikkeld met wetenschappelijke onderbouwing en AI. Klinisch onderbouwd in een pilootstudie bij AZorg Aalst (43 patiënten, 10 weken). Gratis beschikbaar op iOS en Android."
         }
       },
       {
@@ -83,10 +83,10 @@
 
     <div class="nav__links" id="navLinks">
       <a href="#probleem" class="nav__link" data-section="probleem">Het probleem</a>
+      <a href="#verhaal" class="nav__link" data-section="verhaal">Ons verhaal</a>
       <a href="#droompad" class="nav__link" data-section="droompad">Hoe het werkt</a>
       <a href="#resultaten" class="nav__link" data-section="resultaten">Resultaten</a>
       <a href="voor-organisaties.html" class="nav__link">Organisaties</a>
-      <a href="#verhaal" class="nav__link" data-section="verhaal">Ons verhaal</a>
       <a href="#faq" class="nav__link" data-section="faq">FAQ</a>
       <a href="#contact" class="nav__link nav__link--cta" data-section="contact">Contact</a>
     </div>
@@ -100,10 +100,10 @@
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__nav">
       <a href="#probleem" class="menu-overlay__link" data-num="01">Het probleem</a>
-      <a href="#droompad" class="menu-overlay__link" data-num="02">Hoe het werkt</a>
-      <a href="#resultaten" class="menu-overlay__link" data-num="03">Resultaten</a>
-      <a href="voor-organisaties.html" class="menu-overlay__link" data-num="04">Organisaties</a>
-      <a href="#verhaal" class="menu-overlay__link" data-num="05">Ons verhaal</a>
+      <a href="#verhaal" class="menu-overlay__link" data-num="02">Ons verhaal</a>
+      <a href="#droompad" class="menu-overlay__link" data-num="03">Hoe het werkt</a>
+      <a href="#resultaten" class="menu-overlay__link" data-num="04">Resultaten</a>
+      <a href="voor-organisaties.html" class="menu-overlay__link" data-num="05">Organisaties</a>
       <a href="#faq" class="menu-overlay__link" data-num="06">FAQ</a>
       <a href="#contact" class="menu-overlay__link" data-num="07">Contact</a>
     </nav>
@@ -146,33 +146,33 @@
       <path class="dp__active" id="dpPath" d=""/>
       <circle class="dp__head" id="dpHead" r="14" cx="0" cy="0" fill="url(#dpHeadGrad)" filter="url(#dpGlow)"/>
     </svg>
+  </div>
 
-    <!-- Stepping stones (positioned by JS on the path) -->
-    <div class="dp__stone" id="dpStone0">
-      <div class="dp__stone-ring"></div>
-      <div class="dp__stone-dot" id="dpStoneIcon0"></div>
-      <span class="dp__stone-label">Start</span>
-    </div>
-    <div class="dp__stone" id="dpStone1">
-      <div class="dp__stone-ring"></div>
-      <div class="dp__stone-dot" id="dpStoneIcon1"></div>
-      <span class="dp__stone-label">Diagnose</span>
-    </div>
-    <div class="dp__stone" id="dpStone2">
-      <div class="dp__stone-ring"></div>
-      <div class="dp__stone-dot" id="dpStoneIcon2"></div>
-      <span class="dp__stone-label">Jouw Pad</span>
-    </div>
-    <div class="dp__stone" id="dpStone3">
-      <div class="dp__stone-ring"></div>
-      <div class="dp__stone-dot" id="dpStoneIcon3"></div>
-      <span class="dp__stone-label">Resultaten</span>
-    </div>
-    <div class="dp__stone" id="dpStone4">
-      <div class="dp__stone-ring"></div>
-      <div class="dp__stone-dot" id="dpStoneIcon4"></div>
-      <span class="dp__stone-label">Jouw Droom</span>
-    </div>
+  <!-- Stepping stones — outside .dp so they have their own z-index on body level -->
+  <div class="dp__stone" id="dpStone0">
+    <div class="dp__stone-ring"></div>
+    <div class="dp__stone-dot" id="dpStoneIcon0"></div>
+    <span class="dp__stone-label">Start</span>
+  </div>
+  <div class="dp__stone" id="dpStone1">
+    <div class="dp__stone-ring"></div>
+    <div class="dp__stone-dot" id="dpStoneIcon1"></div>
+    <span class="dp__stone-label">Diagnose</span>
+  </div>
+  <div class="dp__stone" id="dpStone2">
+    <div class="dp__stone-ring"></div>
+    <div class="dp__stone-dot" id="dpStoneIcon2"></div>
+    <span class="dp__stone-label">Jouw Pad</span>
+  </div>
+  <div class="dp__stone" id="dpStone3">
+    <div class="dp__stone-ring"></div>
+    <div class="dp__stone-dot" id="dpStoneIcon3"></div>
+    <span class="dp__stone-label">Resultaten</span>
+  </div>
+  <div class="dp__stone" id="dpStone4">
+    <div class="dp__stone-ring"></div>
+    <div class="dp__stone-dot" id="dpStoneIcon4"></div>
+    <span class="dp__stone-label">Jouw Droom</span>
   </div>
 
   <!-- Progressive warmth overlay -->
@@ -221,12 +221,12 @@
 
       <div class="hero-stack__text">
         <h1 class="hero-content__title">Jouw herstel. <em>Jouw pad.</em></h1>
-        <p class="hero-content__sub">RevOnc is de wellbeing app die je helpt sterker worden na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat, samengesteld door klinische expertise en AI. Klinisch gevalideerd bij AZorg Aalst.</p>
+        <p class="hero-content__sub">RevOnc is de wellbeing app die je begeleidt bij je herstel na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat, ontwikkeld met wetenschappelijke onderbouwing en AI. Klinisch onderbouwd bij AZorg Aalst.</p>
         <div class="hero-content__ctas">
           <a href="#contact" class="hero-content__cta hero-content__cta--primary">Download de app <span>→</span></a>
           <a href="#droompad" class="hero-content__cta hero-content__cta--secondary">Bekijk hoe het werkt <span>→</span></a>
         </div>
-        <p class="hero-content__note">Gratis op iOS en Android</p>
+        <p class="hero-content__note" style="display:none">Gratis op iOS en Android</p>
       </div>
     </div>
   </section>
@@ -264,12 +264,51 @@
   </section>
 
   <!-- ========================================================
-       SECTION 3: HOE HET WERKT (5 stappen)
+       SECTION 3: ONS VERHAAL (moved up — after Het probleem)
        ======================================================== -->
-  <section class="panel panel--dark panel--path-right" id="droompad" data-panel="2">
+  <section class="panel panel--dark panel--path-right" id="verhaal" data-panel="2">
     <div class="panel__grid">
       <div class="panel__label">
         <span class="panel__num">02</span>
+        <span class="panel__cat">Ons verhaal</span>
+      </div>
+      <div class="panel__main">
+        <h2 class="panel__title">Gebouwd door<br />iemand die het<br /><em>zag van binnenuit.</em></h2>
+      </div>
+      <div class="panel__aside">
+        <p class="panel__body">
+          Liv zei het in één zin: <em>"Ik viel in een zwart gat."</em>
+        </p>
+        <p class="panel__body" style="margin-top:1rem">
+          Na haar kankerbehandeling was er niets. Geen opvolging, geen plan, geen begeleiding. Het systeem dat haar behandelde, liet haar alleen voor alles wat daarna kwam. Ze moest opnieuw alleen vechten.
+        </p>
+        <p class="panel__body" style="margin-top:1rem">
+          Dat was het startpunt van RevOnc.
+        </p>
+        <p class="panel__body" style="margin-top:1rem">
+          Yorin De Smet is kinesitherapeut. Na zijn studies aan de UGent en stages in oncologische revalidatie zag hij hetzelfde patroon: patiënten werden ontslagen met een pamflet en aan hun lot overgelaten. Hij besloot te bouwen wat niemand anders bouwde.
+        </p>
+        <p class="panel__body" style="margin-top:1rem">
+          RevOnc werd opgericht in 2024 in Gent. Een pilootstudie bij AZorg Aalst met significante resultaten. Steun van VLAIO en Vocatio. Het doel: een wereld waarin iemand als Liv haar leven effectief kan heropbouwen.
+        </p>
+        <div class="founder-card">
+          <img src="yorin.webp" alt="Yorin De Smet" class="founder-card__avatar founder-card__avatar--photo" />
+          <div>
+            <strong class="founder-card__name">Yorin De Smet</strong>
+            <span class="founder-card__title">Founder &amp; Kinesitherapeut · RevOnc BV</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SECTION 4: HOE HET WERKT (5 stappen)
+       ======================================================== -->
+  <section class="panel panel--dark panel--path-left" id="droompad" data-panel="3">
+    <div class="panel__grid">
+      <div class="panel__label">
+        <span class="panel__num">03</span>
         <span class="panel__cat">Hoe het werkt</span>
       </div>
 
@@ -300,8 +339,8 @@
           <div class="step-row">
             <span class="step-row__num">03</span>
             <div class="step-row__body">
-              <h3 class="step-row__title">AI-trainingsplan</h3>
-              <p class="step-row__desc">De RevOnc Engine ontwerpt jouw schema. Elke dag weet je precies wat, hoe lang en hoe intensief.</p>
+              <h3 class="step-row__title">Persoonlijk trainingsplan</h3>
+              <p class="step-row__desc">De RevOnc Engine maakt jouw schema. Dagelijks 3 oefeningen met video, timing en intensiteit afgestemd op jouw niveau.</p>
             </div>
           </div>
           <div class="step-row">
@@ -324,17 +363,17 @@
   </section>
 
   <!-- ========================================================
-       SECTION 4: RESULTATEN / BEWIJS
+       SECTION 5: RESULTATEN / BEWIJS
        ======================================================== -->
-  <section class="panel panel--dark panel--path-left" id="resultaten" data-panel="3">
+  <section class="panel panel--dark panel--path-right" id="resultaten" data-panel="4">
     <div class="panel__grid">
       <div class="panel__label">
-        <span class="panel__num">03</span>
+        <span class="panel__num">04</span>
         <span class="panel__cat">Resultaten</span>
       </div>
 
       <div class="panel__main">
-        <h2 class="panel__title">Niet zomaar<br />een app.<br /><em>Gevalideerd.</em></h2>
+        <h2 class="panel__title">Niet zomaar<br />een app.<br /><em>Onderbouwd.</em></h2>
         <p class="panel__sub">Pilootprogramma bij AZorg Aalst. 40+ patiënten, 10 weken. In samenwerking met Prof. Marieke De Craemer (UGent).</p>
       </div>
 
@@ -343,7 +382,7 @@
           <div class="proof-card proof-card--big">
             <span class="proof-card__label">Vermoeidheid</span>
             <div class="proof-card__num">Significant gedaald</div>
-            <div class="proof-card__sub">Meetbaar minder vermoeid na 10 weken. <a href="voor-organisaties.html#b2b-cta" style="color:#FF9C40">Bekijk het rapport</a></div>
+            <div class="proof-card__sub">Meetbaar minder vermoeid na 10 weken.</div>
           </div>
           <div class="proof-card">
             <span class="proof-card__label">Tevredenheid</span>
@@ -372,108 +411,70 @@
           </div>
         </div>
 
-        <!-- Lead magnet CTA -->
+        <!-- Lead magnet CTA — inline Formsubmit form -->
         <div class="proof-card" style="margin-top:2rem;text-align:center;padding:2rem">
           <h3 style="font-size:1.25rem;margin-bottom:0.5rem">Ontvang het volledige pilootrapport</h3>
-          <p style="opacity:0.7;margin-bottom:1rem">Naam, email, en organisatie. Wij sturen je de volledige resultaten van de pilootstudie.</p>
-          <a href="voor-organisaties.html#b2b-cta" class="panel__cta-link">Vraag het rapport aan →</a>
+          <p style="opacity:0.7;margin-bottom:1rem">Vul je gegevens in en wij sturen je de resultaten van de pilootstudie.</p>
+          <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="display:flex;flex-direction:column;gap:0.5rem;max-width:20rem;margin:0 auto">
+            <input type="hidden" name="_subject" value="Pilootrapport aanvraag (resultaten)">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="naam" placeholder="Uw naam" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
+            <input type="email" name="email" placeholder="Uw email" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
+            <input type="text" name="organisatie" placeholder="Organisatie (optioneel)" style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
+            <button type="submit" style="padding:0.6rem 1.5rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;margin-top:0.25rem">Vraag het rapport aan →</button>
+          </form>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       SECTION 4b: TRUST BAR
+       TRUST BAR (thinner/finer per Yorin feedback)
        ======================================================== -->
-  <section class="panel panel--dark" id="trust" style="padding:3rem 0;min-height:auto;overflow:hidden">
-    <div class="panel__grid" style="align-items:center">
-      <div class="panel__label">
-        <span class="panel__cat" style="opacity:0.5">Ondersteund door</span>
-      </div>
-      <div class="panel__main" style="grid-column:span 2">
-        <div class="trust-track">
-          <div class="trust-track__inner">
-            <span>AZorg Aalst</span>
-            <span>UGent</span>
-            <span>VLAIO</span>
-            <span>Vocatio</span>
-            <span>Stichting Tegen Kanker</span>
-            <span>Start it @KBC</span>
-            <span>Comon</span>
-            <span>Gentrepreneur</span>
-            <span>HO Gent</span>
-            <span>The Future 2026</span>
-            <!-- Duplicate for seamless loop -->
-            <span>AZorg Aalst</span>
-            <span>UGent</span>
-            <span>VLAIO</span>
-            <span>Vocatio</span>
-            <span>Stichting Tegen Kanker</span>
-            <span>Start it @KBC</span>
-            <span>Comon</span>
-            <span>Gentrepreneur</span>
-            <span>HO Gent</span>
-            <span>The Future 2026</span>
-          </div>
-        </div>
+  <section id="trust" style="padding:0.6rem 0;overflow:hidden;position:relative">
+    <div class="trust-track">
+      <div class="trust-track__inner">
+        <span>AZorg Aalst</span>
+        <span>UGent</span>
+        <span>VLAIO</span>
+        <span>Vocatio</span>
+        <span>Stichting Tegen Kanker</span>
+        <span>Start it @KBC</span>
+        <span>Comon</span>
+        <span>Gentrepreneur</span>
+        <span>HO Gent</span>
+        <span>The Future 2026</span>
+        <!-- Duplicate for seamless loop -->
+        <span>AZorg Aalst</span>
+        <span>UGent</span>
+        <span>VLAIO</span>
+        <span>Vocatio</span>
+        <span>Stichting Tegen Kanker</span>
+        <span>Start it @KBC</span>
+        <span>Comon</span>
+        <span>Gentrepreneur</span>
+        <span>HO Gent</span>
+        <span>The Future 2026</span>
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       SECTION 4c: ORGANISATIES BRIDGE
+       ORGANISATIES BRIDGE
        ======================================================== -->
   <section class="panel panel--dark" id="org-bridge" style="padding:5rem 2rem;min-height:auto;text-align:center;position:relative;overflow:hidden">
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%, rgba(46,123,120,0.12) 0%, transparent 60%);pointer-events:none"></div>
     <div style="max-width:38rem;margin:0 auto;position:relative;z-index:3">
       <span style="font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-500);display:block;margin-bottom:1rem">Voor organisaties</span>
       <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:1rem">Bent u een ziekenhuis, verzekeraar<br />of farmabedrijf?</h2>
-      <p style="font-size:1rem;line-height:1.7;color:var(--white-80);margin-bottom:2rem">RevOnc biedt organisaties een kant-en-klaar digitaal nazorgplatform. Standalone, klinisch gevalideerd, geen IT-integratie nodig.</p>
+      <p style="font-size:1rem;line-height:1.7;color:var(--white-80);margin-bottom:2rem">RevOnc biedt organisaties een kant-en-klaar digitaal nazorgplatform. Standalone, klinisch onderbouwd, geen IT-integratie nodig.</p>
       <a href="voor-organisaties.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:var(--orange-cta);color:#fff;font-weight:700;border-radius:3rem;text-decoration:none;font-size:1rem;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(245,142,46,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">Ontdek ons aanbod <span>&#8594;</span></a>
     </div>
   </section>
 
   <!-- ========================================================
-       SECTION 5: ONS VERHAAL
-       ======================================================== -->
-  <section class="panel panel--dark panel--path-left" id="verhaal" data-panel="4">
-    <div class="panel__grid">
-      <div class="panel__label">
-        <span class="panel__num">04</span>
-        <span class="panel__cat">Ons verhaal</span>
-      </div>
-      <div class="panel__main">
-        <h2 class="panel__title">Gebouwd door<br />iemand die het<br /><em>zag van binnenuit.</em></h2>
-      </div>
-      <div class="panel__aside">
-        <p class="panel__body">
-          Liv zei het in één zin: <em>"Ik viel in een zwart gat."</em>
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          Na haar kankerbehandeling was er niets. Geen opvolging, geen plan, geen begeleiding. Het systeem dat haar behandelde, liet haar alleen voor alles wat daarna kwam. Ze moest opnieuw alleen vechten.
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          Dat was het startpunt van RevOnc.
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          Yorin De Smet is kinesitherapeut. Na zijn studie aan de UGent en stages in oncologische revalidatie zag hij hetzelfde patroon: patiënten werden ontslagen met een pamflet en aan hun lot overgelaten. Hij besloot te bouwen wat niemand anders bouwde.
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          RevOnc werd opgericht in 2024 in Gent. Een pilootstudie bij AZorg Aalst met significante resultaten. Steun van VLAIO en Vocatio. Het doel: een wereld waarin iemand als Liv haar leven effectief kan heropbouwen.
-        </p>
-        <div class="founder-card">
-          <img src="yorin.webp" alt="Yorin De Smet" class="founder-card__avatar founder-card__avatar--photo" />
-          <div>
-            <strong class="founder-card__name">Yorin De Smet</strong>
-            <span class="founder-card__title">Founder &amp; Kinesitherapeut · RevOnc BV</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================
-       SECTION 7: FAQ
+       SECTION 6: FAQ
        ======================================================== -->
   <section class="panel panel--dark" id="faq" data-panel="5">
     <div class="panel__grid">
@@ -490,7 +491,7 @@
         <div class="faq-list">
           <details class="faq-item">
             <summary class="faq-item__q">Wat is RevOnc?</summary>
-            <p class="faq-item__a">RevOnc is een wellbeing app die je helpt sterker worden na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat van jouw niveau, samengesteld door klinische expertise en AI. Klinisch gevalideerd in een pilootstudie bij AZorg Aalst (43 patiënten, 10 weken). Gratis beschikbaar op iOS en Android.</p>
+            <p class="faq-item__a">RevOnc is een wellbeing app die je begeleidt bij je herstel na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat van jouw niveau, ontwikkeld met wetenschappelijke onderbouwing en AI. Klinisch onderbouwd in een pilootstudie bij AZorg Aalst (43 patiënten, 10 weken). Gratis beschikbaar op iOS en Android.</p>
           </details>
           <details class="faq-item">
             <summary class="faq-item__q">Is RevOnc een medisch hulpmiddel?</summary>
@@ -534,7 +535,7 @@
   </section>
 
   <!-- ========================================================
-       SECTION 8: CONTACT / CTA
+       SECTION 7: CONTACT / CTA
        ======================================================== -->
   <section class="panel panel--hero" id="contact" data-panel="6">
     <div class="panel__bg panel__bg--contact"></div>
@@ -550,21 +551,34 @@
       <p class="contact-center__sub">
         Patiënt, zorgverlener of organisatie? Laten we kennismaken.
       </p>
-      <div style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1.5rem">
-        <a href="#" class="contact-center__btn">
-          Download de app <span>→</span>
-        </a>
-        <a href="voor-organisaties.html#b2b-hero" class="contact-center__btn" style="background:transparent;border:1px solid rgba(255,255,255,0.3)">
-          Plan een kennismaking <span>→</span>
-        </a>
-      </div>
-      <p style="margin-top:2rem;opacity:0.5;font-size:0.85rem">yorin@revonc.be</p>
+
+      <!-- Contact form — Formsubmit -->
+      <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="width:100%;max-width:28rem;margin:1.5rem auto 0;display:flex;flex-direction:column;gap:0.6rem">
+        <input type="hidden" name="_subject" value="Kennismaking via website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="naam" placeholder="Uw naam" required style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
+        <input type="email" name="email" placeholder="Uw email" required style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
+        <input type="text" name="organisatie" placeholder="Organisatie (optioneel)" style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
+        <input type="tel" name="telefoon" placeholder="Telefoonnummer (optioneel)" style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
+        <div style="display:flex;gap:0.75rem;margin-top:0.25rem;width:100%">
+          <button type="submit" class="contact-center__btn" style="flex:1;border:none;cursor:pointer;font-family:inherit;box-sizing:border-box;justify-content:center;padding:1.1rem 0;font-size:1.05rem;font-weight:800">Plan een kennismaking <span>→</span></button>
+          <a href="#" class="contact-center__btn" style="flex:1;text-align:center;background:transparent;border:1px solid rgba(255,255,255,0.3);box-sizing:border-box;justify-content:center;text-decoration:none;padding:1.1rem 0;font-size:1.05rem;font-weight:800">Download de app <span>→</span></a>
+        </div>
+      </form>
+
+      <p style="margin-top:1.5rem;opacity:0.5;font-size:0.85rem">yorin@revonc.be</p>
 
       <!-- Lead magnet (herhaling) -->
-      <div style="margin-top:3rem;padding:1.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:1rem;max-width:28rem">
+      <div style="margin-top:2rem;padding:1.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:1rem;max-width:28rem;margin-left:auto;margin-right:auto">
         <p style="font-weight:600;margin-bottom:0.5rem">Ontvang het volledige pilootrapport</p>
-        <p style="opacity:0.6;font-size:0.85rem">Wij sturen je de volledige resultaten van de pilootstudie.</p>
-        <a href="voor-organisaties.html#b2b-cta" style="color:#FF9C40;font-weight:600;font-size:0.9rem">Vraag het rapport aan →</a>
+        <p style="opacity:0.6;font-size:0.85rem;margin-bottom:0.75rem">Wij sturen je de volledige resultaten van de pilootstudie.</p>
+        <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="display:flex;gap:0.5rem;flex-wrap:wrap">
+          <input type="hidden" name="_subject" value="Pilootrapport aanvraag (contact)">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="email" name="email" placeholder="Uw email" required style="flex:1;min-width:10rem;padding:0.5rem 0.75rem;border-radius:0.4rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.8rem;font-family:inherit">
+          <button type="submit" style="padding:0.5rem 1rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.8rem;cursor:pointer;font-family:inherit;white-space:nowrap">Vraag aan →</button>
+        </form>
       </div>
     </div>
 
@@ -587,7 +601,7 @@
   </section>
 
 
-  <script src="js/full-page-sparks.js?v=1"></script>
-  <script src="js/main_v2.js?v=10"></script>
+  <script src="js/full-page-sparks.js?v=2" defer></script>
+  <script src="js/main_v2.js?v=15" defer></script>
 </body>
 </html>
