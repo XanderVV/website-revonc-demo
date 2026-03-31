@@ -1582,6 +1582,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     padding-right: 0;
   }
 
+  .panel__label--contact {
+    position: static;
+    padding: 0 1.5rem;
+    margin-bottom: -1rem;
+  }
+
+  .contact-center {
+    padding: calc(var(--nav-h) + 1rem) 1.5rem 6rem;
+  }
+
+  .contact-center__btns {
+    flex-direction: column !important;
+  }
+
+  .contact-center__btn {
+    justify-content: center;
+    text-align: center;
+    font-size: 0.95rem;
+    padding: 1rem 0;
+  }
+
   .panel__cat {
     writing-mode: horizontal-tb;
     transform: none;
