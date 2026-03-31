@@ -1,6 +1,6 @@
 # RevOnc
 
-> RevOnc is de gamified wellbeing app die kankerpatienten helpt hun levenskwaliteit te herwinnen na behandeling. Persoonlijke kracht- en uithoudingsprogramma's, AI-gestuurd, klinisch gevalideerd (significante vermoeidheidsreductie p<0.001, AZorg Aalst pilot). Opgericht door kinesitherapeut Yorin De Smet. Beschikbaar in NL, FR, EN.
+> RevOnc is de gamified wellbeing app die kankerpatienten helpt hun levenskwaliteit te herwinnen na behandeling. Persoonlijke kracht- en uithoudingsprogramma's, AI-gestuurd, klinisch onderbouwd (significante vermoeidheidsreductie in pilootstudie AZorg Aalst). Opgericht door kinesitherapeut Yorin De Smet. Beschikbaar in NL, FR, EN.
 
 ## Core Pages
 

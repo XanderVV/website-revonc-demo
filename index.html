@@ -223,7 +223,7 @@
         <h1 class="hero-content__title">Jouw herstel. <em>Jouw pad.</em></h1>
         <p class="hero-content__sub">RevOnc is de wellbeing app die je begeleidt bij je herstel na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat, ontwikkeld met wetenschappelijke onderbouwing en AI. Klinisch onderbouwd bij AZorg Aalst.</p>
         <div class="hero-content__ctas">
-          <a href="#contact" class="hero-content__cta hero-content__cta--primary">Download de app <span>→</span></a>
+          <a href="#" class="hero-content__cta hero-content__cta--primary" onclick="handleAppDownload(event)">Download de app <span>→</span></a>
           <a href="#droompad" class="hero-content__cta hero-content__cta--secondary">Bekijk hoe het werkt <span>→</span></a>
         </div>
         <p class="hero-content__note" style="display:none">Gratis op iOS en Android</p>
@@ -416,9 +416,12 @@
           <h3 style="font-size:1.25rem;margin-bottom:0.5rem">Ontvang het volledige pilootrapport</h3>
           <p style="opacity:0.7;margin-bottom:1rem">Vul je gegevens in en wij sturen je de resultaten van de pilootstudie.</p>
           <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="display:flex;flex-direction:column;gap:0.5rem;max-width:20rem;margin:0 auto">
-            <input type="hidden" name="_subject" value="Pilootrapport aanvraag (resultaten)">
+            <input type="hidden" name="_subject" value="📄 Pilootrapport aanvraag">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_next" value="https://xandervv.github.io/website-revonc-demo/">
+            <input type="hidden" name="_autoresponse" value="Bedankt voor je interesse! Yorin neemt zo snel mogelijk contact met je op en stuurt je het pilootrapport. — Team RevOnc">
+            <input type="hidden" name="formulier" value="Pilootrapport aanvraag (resultaten-sectie)">
             <input type="text" name="naam" placeholder="Uw naam" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
             <input type="email" name="email" placeholder="Uw email" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
             <input type="text" name="organisatie" placeholder="Organisatie (optioneel)" style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
@@ -554,16 +557,19 @@
 
       <!-- Contact form — Formsubmit -->
       <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="width:100%;max-width:28rem;margin:1.5rem auto 0;display:flex;flex-direction:column;gap:0.6rem">
-        <input type="hidden" name="_subject" value="Kennismaking via website">
+        <input type="hidden" name="_subject" value="🤝 Kennismaking aanvraag">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://xandervv.github.io/website-revonc-demo/">
+        <input type="hidden" name="_autoresponse" value="Bedankt voor je bericht! Yorin neemt zo snel mogelijk contact met je op om een kennismaking in te plannen. — Team RevOnc">
+        <input type="hidden" name="formulier" value="Kennismaking (contact-sectie)">
         <input type="text" name="naam" placeholder="Uw naam" required style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
         <input type="email" name="email" placeholder="Uw email" required style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
         <input type="text" name="organisatie" placeholder="Organisatie (optioneel)" style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
         <input type="tel" name="telefoon" placeholder="Telefoonnummer (optioneel)" style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
         <div style="display:flex;gap:0.75rem;margin-top:0.25rem;width:100%">
           <button type="submit" class="contact-center__btn" style="flex:1;border:none;cursor:pointer;font-family:inherit;box-sizing:border-box;justify-content:center;padding:1.1rem 0;font-size:1.05rem;font-weight:800">Plan een kennismaking <span>→</span></button>
-          <a href="#" class="contact-center__btn" style="flex:1;text-align:center;background:transparent;border:1px solid rgba(255,255,255,0.3);box-sizing:border-box;justify-content:center;text-decoration:none;padding:1.1rem 0;font-size:1.05rem;font-weight:800">Download de app <span>→</span></a>
+          <a href="#" class="contact-center__btn" style="flex:1;text-align:center;background:transparent;border:1px solid rgba(255,255,255,0.3);box-sizing:border-box;justify-content:center;text-decoration:none;padding:1.1rem 0;font-size:1.05rem;font-weight:800" onclick="handleAppDownload(event)">Download de app <span>→</span></a>
         </div>
       </form>
 
@@ -574,8 +580,13 @@
         <p style="font-weight:600;margin-bottom:0.5rem">Ontvang het volledige pilootrapport</p>
         <p style="opacity:0.6;font-size:0.85rem;margin-bottom:0.75rem">Wij sturen je de volledige resultaten van de pilootstudie.</p>
         <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="display:flex;gap:0.5rem;flex-wrap:wrap">
-          <input type="hidden" name="_subject" value="Pilootrapport aanvraag (contact)">
+          <input type="hidden" name="_subject" value="📄 Pilootrapport aanvraag">
           <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="https://xandervv.github.io/website-revonc-demo/">
+          <input type="hidden" name="_autoresponse" value="Bedankt voor je interesse! Yorin neemt zo snel mogelijk contact met je op en stuurt je het pilootrapport. — Team RevOnc">
+          <input type="hidden" name="formulier" value="Pilootrapport aanvraag (contact-sectie)">
+          <input type="text" name="naam" placeholder="Uw naam" required style="flex:1;min-width:10rem;padding:0.5rem 0.75rem;border-radius:0.4rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.8rem;font-family:inherit">
           <input type="email" name="email" placeholder="Uw email" required style="flex:1;min-width:10rem;padding:0.5rem 0.75rem;border-radius:0.4rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.8rem;font-family:inherit">
           <button type="submit" style="padding:0.5rem 1rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.8rem;cursor:pointer;font-family:inherit;white-space:nowrap">Vraag aan →</button>
         </form>
@@ -600,6 +611,58 @@
     </footer>
   </section>
 
+
+  <!-- QR Modal (hidden, shown on desktop "Download de app" click) -->
+  <div id="qrModal" role="dialog" aria-modal="true" aria-label="Download RevOnc" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(3,16,25,0.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center">
+    <div style="background:#0d1f2d;border:1px solid rgba(255,255,255,0.12);border-radius:1.25rem;padding:2.5rem 2rem;max-width:20rem;width:90vw;text-align:center;position:relative">
+      <button onclick="closeQrModal()" aria-label="Sluiten" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:rgba(255,255,255,0.5);font-size:1.5rem;cursor:pointer;line-height:1">&#x2715;</button>
+      <p style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--teal-500);margin-bottom:1rem;font-weight:600">Download RevOnc</p>
+      <p style="font-size:1.05rem;font-weight:700;margin-bottom:1.5rem;color:#fff;line-height:1.4">Scan met je telefoon om<br/>de app te downloaden</p>
+      <div style="background:#fff;border-radius:0.75rem;padding:1rem;display:inline-block;margin-bottom:1.5rem">
+        <img src="revonc-qr.svg" alt="QR code RevOnc app" width="160" height="160" />
+      </div>
+      <p style="font-size:0.8rem;color:rgba(255,255,255,0.45);margin:0">Gratis op iOS en Android</p>
+    </div>
+  </div>
+
+  <script>
+  /* --- App Download: QR modal (desktop) + store redirect (mobile) --- */
+  var IOS_URL     = '#'; // TODO: App Store URL wanneer live
+  var ANDROID_URL = '#'; // TODO: Play Store URL wanneer live
+
+  function getDeviceType() {
+    var ua = navigator.userAgent;
+    if (/android/i.test(ua)) return 'android';
+    if (/iPad|iPhone|iPod/.test(ua) ||
+        (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+    return 'desktop';
+  }
+
+  function handleAppDownload(e) {
+    e.preventDefault();
+    var device = getDeviceType();
+    if (device === 'ios' && IOS_URL !== '#') { window.location.href = IOS_URL; return; }
+    if (device === 'android' && ANDROID_URL !== '#') { window.location.href = ANDROID_URL; return; }
+    openQrModal();
+  }
+
+  function openQrModal() {
+    var m = document.getElementById('qrModal');
+    m.style.display = 'flex';
+    document.addEventListener('keydown', _qrEsc);
+  }
+
+  function closeQrModal() {
+    document.getElementById('qrModal').style.display = 'none';
+    document.removeEventListener('keydown', _qrEsc);
+  }
+
+  function _qrEsc(e) { if (e.key === 'Escape') closeQrModal(); }
+
+  document.getElementById('qrModal').addEventListener('click', function(e) {
+    if (e.target === this) closeQrModal();
+  });
+  </script>
 
   <script src="js/full-page-sparks.js?v=2" defer></script>
   <script src="js/main_v2.js?v=15" defer></script>

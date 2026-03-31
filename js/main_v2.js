@@ -20,9 +20,9 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    1. MENU OVERLAY — "Menu +" toggle (Bright Biotech style)
    ============================================================ */
 (function initMenu() {
-  const btn     = $('#menuBtn');
+  const btn = $('#menuBtn');
   const overlay = $('#menuOverlay');
-  const plus    = $('#menuPlus');
+  const plus = $('#menuPlus');
   if (!btn || !overlay) return;
 
   const open = () => {
@@ -137,7 +137,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
    ============================================================ */
 (function initHeroParallax() {
   const hero = $('.panel--hero');
-  const orb  = $('.hero-object');
+  const orb = $('.hero-object');
   if (!hero || !orb) return;
   if (window.matchMedia('(hover: none)').matches) return;
 
@@ -171,7 +171,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.style.opacity  = '1';
+          entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
           observer.unobserve(entry.target);
         }
@@ -181,7 +181,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
   );
 
   targets.forEach((el, i) => {
-    el.style.opacity   = '0';
+    el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = `opacity 0.65s ${0.08 * (i % 6)}s cubic-bezier(0.22,1,0.36,1), transform 0.65s ${0.08 * (i % 6)}s cubic-bezier(0.22,1,0.36,1)`;
     observer.observe(el);
@@ -235,8 +235,8 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
    8. KEYBOARD ACCESSIBILITY — focus trap in overlay menu
    ============================================================ */
 (function initFocusTrap() {
-  const overlay  = $('#menuOverlay');
-  const menuBtn  = $('#menuBtn');
+  const overlay = $('#menuOverlay');
+  const menuBtn = $('#menuBtn');
   if (!overlay || !menuBtn) return;
 
   const focusable = () => $$('a, button', overlay).filter(el => !el.disabled);
@@ -247,7 +247,7 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
     const items = focusable();
     const first = items[0];
-    const last  = items[items.length - 1];
+    const last = items[items.length - 1];
 
     if (e.shiftKey) {
       if (document.activeElement === first) { e.preventDefault(); last.focus(); }
@@ -265,12 +265,12 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
    actual panel positions so the path goes through empty space.
    ============================================================ */
 (function initDroompad() {
-  const pathEl  = $('#dpPath');
+  const pathEl = $('#dpPath');
   const trailEl = $('#dpTrail');
-  const headEl  = $('#dpHead');
-  const moodEl  = $('#dpMood');
-  const dpEl    = $('#dp');
-  const svgEl   = $('#dpSvg');
+  const headEl = $('#dpHead');
+  const moodEl = $('#dpMood');
+  const dpEl = $('#dp');
+  const svgEl = $('#dpSvg');
   const particlesEl = $('#dpParticles');
 
   if (!pathEl || !svgEl || !dpEl) return;
@@ -285,14 +285,15 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
   // ---- SVG icons for stone states ----
   const checkSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>';
-  const playSvg  = '<svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><polygon points="6 3 20 12 6 21"/></svg>';
-  const lockSvg  = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>';
-  const starSvg  = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  const playSvg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><polygon points="6 3 20 12 6 21"/></svg>';
+  const lockSvg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>';
+  const starSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
 
   let pathLen = 0;
 
   // ---- Stone positions along path (0–1) ----
-  const stonePositions = [0.04, 0.28, 0.48, 0.69, 0.96];
+  // DO NOT CHANGE — manually tuned to avoid overlapping section text/images
+  const stonePositions = [0.04, 0.24, 0.42, 0.62, 0.96];
 
   // ---- Mathematically perfect S-curve anchors (pctX, pctY of page) ----
   // Only key turning points — cubic beziers with vertical tangents create
@@ -309,7 +310,7 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
   // ---- Build perfectly smooth SVG path ----
   function buildPath() {
-    const vw   = window.innerWidth;
+    const vw = window.innerWidth;
     const docH = document.documentElement.scrollHeight;
 
     // Size dp container + SVG to full document height
@@ -353,7 +354,7 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
     // Recalculate path length for animations
     pathLen = pathEl.getTotalLength();
-    pathEl.style.strokeDasharray  = pathLen;
+    pathEl.style.strokeDasharray = pathLen;
     pathEl.style.strokeDashoffset = pathLen;
 
     positionStones();
@@ -366,7 +367,7 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
       if (!stones[i]) return;
       const pt = pathEl.getPointAtLength(t * pathLen);
       stones[i].style.left = pt.x + 'px';
-      stones[i].style.top  = pt.y + 'px';
+      stones[i].style.top = pt.y + 'px';
     });
   }
 
@@ -376,16 +377,16 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
   function onScroll() {
     if (pathLen <= 0) return;
 
-    const scrollY   = window.scrollY || window.pageYOffset;
-    const docH      = document.documentElement.scrollHeight;
-    const winH      = window.innerHeight;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const docH = document.documentElement.scrollHeight;
+    const winH = window.innerHeight;
     const maxScroll = docH - winH;
     if (maxScroll <= 0) return;
 
     // Sync path head to viewport: path draws as the viewport reaches each section
     // Path starts at ANCHORS[0].y and ends at ANCHORS[last].y of the page
     var yStart = ANCHORS[0].y * docH;
-    var yEnd   = ANCHORS[ANCHORS.length - 1].y * docH;
+    var yEnd = ANCHORS[ANCHORS.length - 1].y * docH;
     var pathRange = yEnd - yStart;
 
     // Path head should be at ~75% of the viewport (slightly below center)
