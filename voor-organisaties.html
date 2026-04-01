@@ -7,7 +7,8 @@
   <meta name="description" content="RevOnc biedt ziekenhuizen, farmabedrijven, verzekeraars en arbodiensten een digitaal nazorgplatform voor kankerpatienten. Standalone, bewezen in pilootstudie, geen IT-integratie nodig." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="css/style_v2.css?v=15" />
   <style>
     /* ================================================
@@ -600,10 +601,7 @@
       <button type="submit" class="b2b-form__submit">Plan een kennismaking <span>&#8594;</span></button>
       <p class="b2b-form__note">We nemen binnen 24 uur contact met u op.</p>
     </form>
-    <div class="b2b-hero__scroll">
-      <span>Scroll</span>
-      <div class="b2b-hero__scroll-line"></div>
-    </div>
+    <!-- scroll indicator removed per Yorin feedback -->
   </section>
 
   <!-- ========================================================
@@ -720,7 +718,7 @@
        PROOF STRIP
        ======================================================== -->
   <div class="b2b-divider"></div>
-  <section class="panel panel--dark b2b-proof">
+  <section class="panel panel--dark b2b-proof" style="min-height:auto;padding:6rem 2rem">
     <div class="b2b-proof__bg"></div>
     <h2 class="b2b-proof__title">Onze <em>pilootresultaten.</em></h2>
     <div class="b2b-proof__row">
@@ -783,8 +781,8 @@
       </div>
       <div class="footer__right">
         <a href="mailto:yorin@revonc.be">yorin@revonc.be</a>
-        <a href="https://revonc.be/privacy" target="_blank" rel="noopener">Privacybeleid</a>
-        <a href="https://revonc.be/voorwaarden" target="_blank" rel="noopener">Voorwaarden</a>
+        <a href="privacy.html">Privacybeleid</a>
+        <a href="voorwaarden.html">Voorwaarden</a>
         <a href="https://www.linkedin.com/company/revonc" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </footer>

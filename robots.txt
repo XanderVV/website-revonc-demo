@@ -32,4 +32,4 @@ Disallow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://revonc.be/sitemap.xml
+Sitemap: https://xandervv.github.io/website-revonc-demo/sitemap.xml

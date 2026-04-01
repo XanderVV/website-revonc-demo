@@ -7,7 +7,8 @@
   <meta name="description" content="RevOnc helpt ex-kankerpatiënten sterker te worden na de behandeling. Gepersonaliseerde beweegprogramma's, dagelijkse begeleiding en wetenschappelijke onderbouwing. Gratis op iOS en Android." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="css/style_v2.css?v=15" />
 
   <!-- FAQPage Schema (JSON-LD) for GEO/SEO -->
@@ -87,6 +88,7 @@
       <a href="#droompad" class="nav__link" data-section="droompad">Hoe het werkt</a>
       <a href="#resultaten" class="nav__link" data-section="resultaten">Resultaten</a>
       <a href="voor-organisaties.html" class="nav__link">Organisaties</a>
+      <a href="blog/" class="nav__link">Blog</a>
       <a href="#faq" class="nav__link" data-section="faq">FAQ</a>
       <a href="#contact" class="nav__link nav__link--cta" data-section="contact">Contact</a>
     </div>
@@ -104,8 +106,9 @@
       <a href="#droompad" class="menu-overlay__link" data-num="03">Hoe het werkt</a>
       <a href="#resultaten" class="menu-overlay__link" data-num="04">Resultaten</a>
       <a href="voor-organisaties.html" class="menu-overlay__link" data-num="05">Organisaties</a>
-      <a href="#faq" class="menu-overlay__link" data-num="06">FAQ</a>
-      <a href="#contact" class="menu-overlay__link" data-num="07">Contact</a>
+      <a href="blog/" class="menu-overlay__link" data-num="06">Blog</a>
+      <a href="#faq" class="menu-overlay__link" data-num="07">FAQ</a>
+      <a href="#contact" class="menu-overlay__link" data-num="08">Contact</a>
     </nav>
     <div class="menu-overlay__footer">
       <span>yorin@revonc.be</span>
@@ -365,7 +368,7 @@
   <!-- ========================================================
        SECTION 5: RESULTATEN / BEWIJS
        ======================================================== -->
-  <section class="panel panel--dark panel--path-right" id="resultaten" data-panel="4">
+  <section class="panel panel--dark panel--path-right" id="resultaten" data-panel="4" style="min-height:auto;padding-bottom:4rem">
     <div class="panel__grid">
       <div class="panel__label">
         <span class="panel__num">04</span>
@@ -419,7 +422,7 @@
             <input type="hidden" name="_subject" value="📄 Pilootrapport aanvraag">
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://xandervv.github.io/website-revonc-demo/">
+            <!-- AJAX submission handles redirect -->
             <input type="hidden" name="_autoresponse" value="Bedankt voor je interesse! Yorin neemt zo snel mogelijk contact met je op en stuurt je het pilootrapport. — Team RevOnc">
             <input type="hidden" name="formulier" value="Pilootrapport aanvraag (resultaten-sectie)">
             <input type="text" name="naam" placeholder="Uw naam" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
@@ -428,6 +431,33 @@
             <button type="submit" style="padding:0.6rem 1.5rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;margin-top:0.25rem">Vraag het rapport aan →</button>
           </form>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SOCIAL WINS / TESTIMONIALS
+       ======================================================== -->
+  <section class="wins-section" style="padding:4rem 2rem;max-width:72rem;margin:0 auto">
+    <div style="text-align:center;margin-bottom:2.5rem">
+      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange-cta)">Wat gebruikers zeggen</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-0.03em;margin-top:0.75rem;color:#fff">Echte verhalen, echte resultaten.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;position:relative">
+        <span style="font-size:2.5rem;line-height:1;color:var(--green-accent);opacity:0.4;position:absolute;top:1rem;left:1.5rem">"</span>
+        <p style="color:rgba(255,255,255,0.75);line-height:1.7;font-size:0.95rem;margin-top:1rem">Dankzij RevOnc ben ik stap voor stap weer beginnen bewegen. Het voelde veilig en op mijn tempo.</p>
+        <p style="margin-top:1.25rem;font-weight:700;font-size:0.85rem;color:var(--green-accent)">Pilootdeelnemer, AZorg Aalst</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;position:relative">
+        <span style="font-size:2.5rem;line-height:1;color:var(--green-accent);opacity:0.4;position:absolute;top:1rem;left:1.5rem">"</span>
+        <p style="color:rgba(255,255,255,0.75);line-height:1.7;font-size:0.95rem;margin-top:1rem">Ik dacht dat ik nooit meer zou kunnen sporten. Na 10 weken voel ik me sterker dan voor mijn behandeling.</p>
+        <p style="margin-top:1.25rem;font-weight:700;font-size:0.85rem;color:var(--green-accent)">Pilootdeelnemer, AZorg Aalst</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;position:relative">
+        <span style="font-size:2.5rem;line-height:1;color:var(--green-accent);opacity:0.4;position:absolute;top:1rem;left:1.5rem">"</span>
+        <p style="color:rgba(255,255,255,0.75);line-height:1.7;font-size:0.95rem;margin-top:1rem">De app geeft structuur op momenten dat je het zelf niet meer weet. Elke kleine overwinning telt.</p>
+        <p style="margin-top:1.25rem;font-weight:700;font-size:0.85rem;color:var(--green-accent)">Pilootdeelnemer, AZorg Aalst</p>
       </div>
     </div>
   </section>
@@ -560,7 +590,7 @@
         <input type="hidden" name="_subject" value="🤝 Kennismaking aanvraag">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://xandervv.github.io/website-revonc-demo/">
+        <!-- AJAX submission handles redirect -->
         <input type="hidden" name="_autoresponse" value="Bedankt voor je bericht! Yorin neemt zo snel mogelijk contact met je op om een kennismaking in te plannen. — Team RevOnc">
         <input type="hidden" name="formulier" value="Kennismaking (contact-sectie)">
         <input type="text" name="naam" placeholder="Uw naam" required style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
@@ -583,7 +613,7 @@
           <input type="hidden" name="_subject" value="📄 Pilootrapport aanvraag">
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_next" value="https://xandervv.github.io/website-revonc-demo/">
+          <!-- AJAX submission handles redirect -->
           <input type="hidden" name="_autoresponse" value="Bedankt voor je interesse! Yorin neemt zo snel mogelijk contact met je op en stuurt je het pilootrapport. — Team RevOnc">
           <input type="hidden" name="formulier" value="Pilootrapport aanvraag (contact-sectie)">
           <input type="text" name="naam" placeholder="Uw naam" required style="flex:1;min-width:10rem;padding:0.5rem 0.75rem;border-radius:0.4rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.8rem;font-family:inherit">
@@ -604,8 +634,8 @@
       </div>
       <div class="footer__right">
         <a href="mailto:yorin@revonc.be">yorin@revonc.be</a>
-        <a href="https://revonc.be/privacy" target="_blank" rel="noopener">Privacybeleid</a>
-        <a href="https://revonc.be/voorwaarden" target="_blank" rel="noopener">Voorwaarden</a>
+        <a href="privacy.html">Privacybeleid</a>
+        <a href="voorwaarden.html">Voorwaarden</a>
         <a href="https://www.linkedin.com/company/revonc" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </footer>
@@ -675,6 +705,33 @@
 
   document.getElementById('qrModal').addEventListener('click', function(e) {
     if (e.target === this) closeQrModal();
+  });
+
+  // AJAX form submission — prevents redirect, shows toast instead
+  document.querySelectorAll('form[action*="formsubmit.co"]').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var origText = btn ? btn.textContent : '';
+      if (btn) { btn.textContent = 'Verzenden...'; btn.disabled = true; }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function(res) {
+        if (res.ok) {
+          showToast('Bedankt! We nemen zo snel mogelijk contact met je op.');
+          form.reset();
+        } else {
+          showToast('Er ging iets mis. Probeer het opnieuw of mail yorin@revonc.be');
+        }
+      }).catch(function() {
+        showToast('Er ging iets mis. Probeer het opnieuw of mail yorin@revonc.be');
+      }).finally(function() {
+        if (btn) { btn.textContent = origText; btn.disabled = false; }
+      });
+    });
   });
   </script>
 
