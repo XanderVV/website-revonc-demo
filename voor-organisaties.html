@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="css/style_v2.css?v=15" />
+  <link rel="stylesheet" href="css/style_v2.min.css?v=16" />
   <style>
     /* ================================================
        B2B PAGE — all classes prefixed b2b- to avoid
@@ -547,6 +547,7 @@
       <a href="index.html#droompad" class="nav__link">Hoe het werkt</a>
       <a href="index.html#resultaten" class="nav__link">Resultaten</a>
       <a href="#" class="nav__link active">Organisaties</a>
+      <a href="blog/" class="nav__link">Blog</a>
       <a href="index.html#faq" class="nav__link">FAQ</a>
       <a href="index.html#contact" class="nav__link nav__link--cta">Contact</a>
     </div>
@@ -564,6 +565,7 @@
       <a href="index.html#droompad" class="menu-overlay__link" data-num="03">Hoe het werkt</a>
       <a href="index.html#resultaten" class="menu-overlay__link" data-num="04">Resultaten</a>
       <a href="#" class="menu-overlay__link" data-num="05">Organisaties</a>
+      <a href="blog/" class="menu-overlay__link" data-num="">Blog</a>
       <a href="index.html#faq" class="menu-overlay__link" data-num="06">FAQ</a>
       <a href="index.html#contact" class="menu-overlay__link" data-num="07">Contact</a>
     </nav>
@@ -588,7 +590,6 @@
     <form class="b2b-form" action="https://formsubmit.co/yorin@revonc.be" method="POST">
       <input type="hidden" name="_subject" value="Kennismakingsverzoek via RevOnc website" />
       <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value="https://revonc.be/voor-organisaties.html?verzonden=1" />
       <input type="text" name="_honey" style="display:none" />
       <div class="b2b-form__row">
         <input type="text" class="b2b-form__input" name="naam" placeholder="Naam" required />
@@ -756,7 +757,6 @@
     <form class="b2b-form" action="https://formsubmit.co/yorin@revonc.be" method="POST">
       <input type="hidden" name="_subject" value="Aanvraag pilootrapport via RevOnc website" />
       <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value="https://revonc.be/voor-organisaties.html?verzonden=1" />
       <input type="text" name="_honey" style="display:none" />
       <div class="b2b-form__row">
         <input type="text" class="b2b-form__input" name="naam" placeholder="Naam" required />
@@ -836,6 +836,42 @@
         observer.observe(el);
       });
     })();
+
+    // Toast notification
+    function showToast(msg) {
+      var t = document.createElement('div');
+      t.textContent = msg;
+      t.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--green-accent,#1BB0AA);color:#fff;padding:1rem 2rem;border-radius:0.75rem;font-weight:600;font-size:0.95rem;z-index:9999;box-shadow:0 8px 32px rgba(0,0,0,0.3);text-align:center;max-width:90vw';
+      document.body.appendChild(t);
+      setTimeout(function(){ t.style.opacity='0'; t.style.transition='opacity 0.5s'; }, 3500);
+      setTimeout(function(){ t.remove(); }, 4000);
+    }
+
+    // AJAX form submission
+    $$('form[action*="formsubmit.co"]').forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var origText = btn ? btn.textContent : '';
+        if (btn) { btn.textContent = 'Verzenden...'; btn.disabled = true; }
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        }).then(function(res) {
+          if (res.ok) {
+            showToast('Bedankt! We nemen zo snel mogelijk contact met je op.');
+            form.reset();
+          } else {
+            showToast('Er ging iets mis. Probeer het opnieuw of mail yorin@revonc.be');
+          }
+        }).catch(function() {
+          showToast('Er ging iets mis. Probeer het opnieuw of mail yorin@revonc.be');
+        }).finally(function() {
+          if (btn) { btn.textContent = origText; btn.disabled = false; }
+        });
+      });
+    });
 
   </script>
 </body>

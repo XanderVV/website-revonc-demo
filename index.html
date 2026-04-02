@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
-  <link rel="stylesheet" href="css/style_v2.css?v=15" />
+  <link rel="stylesheet" href="css/style_v2.min.css?v=16" />
 
   <!-- FAQPage Schema (JSON-LD) for GEO/SEO -->
   <script type="application/ld+json">
@@ -295,7 +295,7 @@
           RevOnc werd opgericht in 2024 in Gent. Een pilootstudie bij AZorg Aalst met significante resultaten. Steun van VLAIO en Vocatio. Het doel: een wereld waarin iemand als Liv haar leven effectief kan heropbouwen.
         </p>
         <div class="founder-card">
-          <img src="yorin.webp" alt="Yorin De Smet" class="founder-card__avatar founder-card__avatar--photo" />
+          <img src="yorin.webp" alt="Yorin De Smet" class="founder-card__avatar founder-card__avatar--photo" loading="lazy" width="80" height="80" />
           <div>
             <strong class="founder-card__name">Yorin De Smet</strong>
             <span class="founder-card__title">Founder &amp; Kinesitherapeut · RevOnc BV</span>
@@ -319,7 +319,7 @@
         <h2 class="panel__title">Vijf stappen naar<br />jouw<br /><em>beweegdroom.</em></h2>
         <p class="panel__sub">RevOnc stelt een persoonlijk programma samen op basis van jouw niveau. Elke dag weet je wat je moet doen.</p>
         <div class="mockup-showcase">
-          <img src="mockups.webp" alt="RevOnc app — droompad en profiel schermen" class="mockup-showcase__img" />
+          <img src="mockups.webp" alt="RevOnc app — droompad en profiel schermen" class="mockup-showcase__img" loading="lazy" width="600" height="400" />
         </div>
       </div>
 
@@ -368,7 +368,7 @@
   <!-- ========================================================
        SECTION 5: RESULTATEN / BEWIJS
        ======================================================== -->
-  <section class="panel panel--dark panel--path-right" id="resultaten" data-panel="4" style="min-height:auto;padding-bottom:4rem">
+  <section class="panel panel--dark panel--path-right" id="resultaten" data-panel="4" style="min-height:auto !important;padding-bottom:3rem">
     <div class="panel__grid">
       <div class="panel__label">
         <span class="panel__num">04</span>
@@ -397,21 +397,6 @@
             <div class="proof-card__num" data-count="83" data-suffix="%">0%</div>
             <div class="proof-card__sub">Vroeg om door te gaan na het programma</div>
           </div>
-          <div class="proof-card proof-card--quote">
-            <svg width="28" height="20" viewBox="0 0 28 20" fill="currentColor" style="opacity:0.3;margin-bottom:0.75rem"><path d="M0 20V12C0 5.4 3.8 1.4 11.4 0l1.2 2C8.4 3 6.2 5.4 5.8 9H11V20H0ZM17 20V12C17 5.4 20.8 1.4 28.4 0l1.2 2C25.4 3 23.2 5.4 22.8 9H28V20H17Z"/></svg>
-            <p>"Het voelde als een coach in mijn broekzak. Ik deed het op mijn eigen tempo en dat gaf rust."</p>
-            <strong>— Deelneemster pilootstudie AZorg Aalst</strong>
-          </div>
-          <div class="proof-card proof-card--quote">
-            <svg width="28" height="20" viewBox="0 0 28 20" fill="currentColor" style="opacity:0.3;margin-bottom:0.75rem"><path d="M0 20V12C0 5.4 3.8 1.4 11.4 0l1.2 2C8.4 3 6.2 5.4 5.8 9H11V20H0ZM17 20V12C17 5.4 20.8 1.4 28.4 0l1.2 2C25.4 3 23.2 5.4 22.8 9H28V20H17Z"/></svg>
-            <p>"Door de app wist ik precies wat ik moest doen. Geen twijfel, gewoon beginnen."</p>
-            <strong>— Deelneemster pilootstudie AZorg Aalst</strong>
-          </div>
-          <div class="proof-card proof-card--quote">
-            <svg width="28" height="20" viewBox="0 0 28 20" fill="currentColor" style="opacity:0.3;margin-bottom:0.75rem"><path d="M0 20V12C0 5.4 3.8 1.4 11.4 0l1.2 2C8.4 3 6.2 5.4 5.8 9H11V20H0ZM17 20V12C17 5.4 20.8 1.4 28.4 0l1.2 2C25.4 3 23.2 5.4 22.8 9H28V20H17Z"/></svg>
-            <p>"Ik merkte dat ik weer zin had om te bewegen. Dat had ik lang niet meer gevoeld."</p>
-            <strong>— Deelneemster pilootstudie AZorg Aalst</strong>
-          </div>
         </div>
 
         <!-- Lead magnet CTA — inline Formsubmit form -->
@@ -435,32 +420,6 @@
     </div>
   </section>
 
-  <!-- ========================================================
-       SOCIAL WINS / TESTIMONIALS
-       ======================================================== -->
-  <section class="wins-section" style="padding:4rem 2rem;max-width:72rem;margin:0 auto">
-    <div style="text-align:center;margin-bottom:2.5rem">
-      <span style="font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--orange-cta)">Wat gebruikers zeggen</span>
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-0.03em;margin-top:0.75rem;color:#fff">Echte verhalen, echte resultaten.</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;position:relative">
-        <span style="font-size:2.5rem;line-height:1;color:var(--green-accent);opacity:0.4;position:absolute;top:1rem;left:1.5rem">"</span>
-        <p style="color:rgba(255,255,255,0.75);line-height:1.7;font-size:0.95rem;margin-top:1rem">Dankzij RevOnc ben ik stap voor stap weer beginnen bewegen. Het voelde veilig en op mijn tempo.</p>
-        <p style="margin-top:1.25rem;font-weight:700;font-size:0.85rem;color:var(--green-accent)">Pilootdeelnemer, AZorg Aalst</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;position:relative">
-        <span style="font-size:2.5rem;line-height:1;color:var(--green-accent);opacity:0.4;position:absolute;top:1rem;left:1.5rem">"</span>
-        <p style="color:rgba(255,255,255,0.75);line-height:1.7;font-size:0.95rem;margin-top:1rem">Ik dacht dat ik nooit meer zou kunnen sporten. Na 10 weken voel ik me sterker dan voor mijn behandeling.</p>
-        <p style="margin-top:1.25rem;font-weight:700;font-size:0.85rem;color:var(--green-accent)">Pilootdeelnemer, AZorg Aalst</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:2rem;position:relative">
-        <span style="font-size:2.5rem;line-height:1;color:var(--green-accent);opacity:0.4;position:absolute;top:1rem;left:1.5rem">"</span>
-        <p style="color:rgba(255,255,255,0.75);line-height:1.7;font-size:0.95rem;margin-top:1rem">De app geeft structuur op momenten dat je het zelf niet meer weet. Elke kleine overwinning telt.</p>
-        <p style="margin-top:1.25rem;font-weight:700;font-size:0.85rem;color:var(--green-accent)">Pilootdeelnemer, AZorg Aalst</p>
-      </div>
-    </div>
-  </section>
 
   <!-- ========================================================
        TRUST BAR (thinner/finer per Yorin feedback)
@@ -735,7 +694,7 @@
   });
   </script>
 
-  <script src="js/full-page-sparks.js?v=2" defer></script>
-  <script src="js/main_v2.js?v=15" defer></script>
+  <script src="js/full-page-sparks.min.js?v=3" defer></script>
+  <script src="js/main_v2.min.js?v=16" defer></script>
 </body>
 </html>
