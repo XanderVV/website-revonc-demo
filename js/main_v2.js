@@ -293,7 +293,7 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
   // ---- Stone positions along path (0–1) ----
   // DO NOT CHANGE — manually tuned to avoid overlapping section text/images
-  const stonePositions = [0.04, 0.24, 0.42, 0.62, 0.96];
+  const stonePositions = [0.04, 0.24, 0.42, 0.50, 0.96];
 
   // ---- Mathematically perfect S-curve anchors (pctX, pctY of page) ----
   // Only key turning points — cubic beziers with vertical tangents create
@@ -416,7 +416,9 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
       stone.classList.toggle('visible', progress >= threshold - 0.04);
 
       let state;
-      if (idx < currentStep) state = 'completed';
+      // Resultaten stone (idx 3) is always unlocked + clickable per Yorin feedback
+      if (stone.classList.contains('dp__stone--clickable')) state = 'current';
+      else if (idx < currentStep) state = 'completed';
       else if (idx === currentStep) state = 'current';
       else state = 'locked';
 

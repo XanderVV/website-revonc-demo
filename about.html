@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ons verhaal — RevOnc</title>
+  <meta name="description" content="Het verhaal achter RevOnc. Gebouwd door een kinesitherapeut die het zwarte gat na kankerbehandeling van binnenuit zag." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="css/style_v2.min.css?v=16" />
+  <style>
+    .about-hero {
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 9rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .about-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(46,123,120,0.18) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .about-hero__eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-500);
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .about-hero__title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.08;
+      max-width: 44rem;
+      position: relative;
+    }
+    .about-hero__title em {
+      color: var(--teal-500);
+      font-style: normal;
+    }
+    .about-content {
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--white-80);
+      margin-bottom: 1.5rem;
+    }
+    .about-content p em {
+      color: var(--white);
+      font-style: italic;
+    }
+    .about-founder {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 1rem;
+    }
+    .about-founder img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .about-founder strong {
+      display: block;
+      font-size: 1.05rem;
+      color: var(--white);
+    }
+    .about-founder span {
+      font-size: 0.85rem;
+      color: var(--white-60);
+    }
+    .about-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+      padding: 0.85rem 2rem;
+      background: var(--orange-cta);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 3rem;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body data-section="about">
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo" aria-label="RevOnc">
+      <img src="revonc logo.webp" alt="" class="nav__logo-img" aria-hidden="true" />
+      <span class="nav__logo-text">RevOnc</span>
+      <span class="nav__logo-divider"></span>
+      <span class="nav__logo-tagline">Jouw herstelpad na kanker</span>
+    </a>
+    <div class="nav__links">
+      <a href="index.html#probleem" class="nav__link">Het probleem</a>
+      <a href="about.html" class="nav__link">Ons verhaal</a>
+      <a href="index.html#resultaten" class="nav__link">Resultaten</a>
+      <a href="voor-organisaties.html" class="nav__link">Organisaties</a>
+      <a href="blog/" class="nav__link">Blog</a>
+      <a href="index.html#faq" class="nav__link">FAQ</a>
+      <a href="index.html#contact" class="nav__link nav__link--cta">Contact</a>
+    </div>
+  </nav>
+
+  <section class="about-hero">
+    <span class="about-hero__eyebrow">Ons verhaal</span>
+    <h1 class="about-hero__title">Gebouwd door iemand die het<br /><em>zag van binnenuit.</em></h1>
+  </section>
+
+  <section class="about-content">
+    <p>Liv zei het in één zin: <em>"Ik viel in een zwart gat."</em></p>
+    <p>Na haar kankerbehandeling was er niets. Geen opvolging, geen plan, geen begeleiding. Het systeem dat haar behandelde, liet haar alleen voor alles wat daarna kwam. Ze moest opnieuw alleen vechten.</p>
+    <p>Dat was het startpunt van RevOnc.</p>
+    <p>Yorin De Smet is kinesitherapeut. Na zijn studies aan de UGent en stages in oncologische revalidatie zag hij hetzelfde patroon: patiënten werden ontslagen met een pamflet en aan hun lot overgelaten. Hij besloot te bouwen wat niemand anders bouwde.</p>
+    <p>RevOnc werd opgericht in 2024 in Gent. Een pilootstudie bij AZorg Aalst met significante resultaten. Steun van VLAIO en Vocatio. Het doel: een wereld waarin iemand als Liv haar leven effectief kan heropbouwen.</p>
+
+    <div class="about-founder">
+      <img src="yorin.webp" alt="Yorin De Smet" loading="lazy" width="80" height="80" />
+      <div>
+        <strong>Yorin De Smet</strong>
+        <span>Founder &amp; Kinesitherapeut · RevOnc BV</span>
+      </div>
+    </div>
+
+    <div style="text-align:center">
+      <a href="index.html" class="about-back">&larr; Terug naar home</a>
+    </div>
+  </section>
+
+</body>
+</html>

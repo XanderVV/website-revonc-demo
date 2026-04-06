@@ -10,6 +10,28 @@
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="css/style_v2.min.css?v=16" />
+  <style>
+    /* Clickable Resultaten stone — matched aan andere stones, subtiele klik-hint */
+    .dp__stone--clickable { cursor: pointer; text-decoration: none; }
+    .dp__stone--clickable .dp__stone-dot { transition: transform 0.25s ease, box-shadow 0.25s ease; }
+    .dp__stone--clickable:hover .dp__stone-dot {
+      transform: scale(1.1);
+      box-shadow: 0 0 50px rgba(255, 156, 64, 0.85), 0 0 110px rgba(255, 156, 64, 0.4) !important;
+    }
+    .dp__stone--clickable .dp__stone-label { transition: color 0.2s ease; }
+    .dp__stone--clickable:hover .dp__stone-label { color: #FF9C40; }
+    .dp__stone-tooltip {
+      display: block;
+      margin-top: 0.3rem;
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+    }
+    .dp__stone--clickable:hover .dp__stone-tooltip { color: #FF9C40; }
+  </style>
 
   <!-- FAQPage Schema (JSON-LD) for GEO/SEO -->
   <script type="application/ld+json">
@@ -84,8 +106,7 @@
 
     <div class="nav__links" id="navLinks">
       <a href="#probleem" class="nav__link" data-section="probleem">Het probleem</a>
-      <a href="#verhaal" class="nav__link" data-section="verhaal">Ons verhaal</a>
-      <a href="#droompad" class="nav__link" data-section="droompad">Hoe het werkt</a>
+      <a href="about.html" class="nav__link">Ons verhaal</a>
       <a href="#resultaten" class="nav__link" data-section="resultaten">Resultaten</a>
       <a href="voor-organisaties.html" class="nav__link">Organisaties</a>
       <a href="blog/" class="nav__link">Blog</a>
@@ -102,13 +123,12 @@
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__nav">
       <a href="#probleem" class="menu-overlay__link" data-num="01">Het probleem</a>
-      <a href="#verhaal" class="menu-overlay__link" data-num="02">Ons verhaal</a>
-      <a href="#droompad" class="menu-overlay__link" data-num="03">Hoe het werkt</a>
-      <a href="#resultaten" class="menu-overlay__link" data-num="04">Resultaten</a>
-      <a href="voor-organisaties.html" class="menu-overlay__link" data-num="05">Organisaties</a>
+      <a href="about.html" class="menu-overlay__link" data-num="02">Ons verhaal</a>
+      <a href="#resultaten" class="menu-overlay__link" data-num="03">Resultaten</a>
+      <a href="voor-organisaties.html" class="menu-overlay__link" data-num="04">Organisaties</a>
       <a href="blog/" class="menu-overlay__link" data-num="06">Blog</a>
-      <a href="#faq" class="menu-overlay__link" data-num="07">FAQ</a>
-      <a href="#contact" class="menu-overlay__link" data-num="08">Contact</a>
+      <a href="#faq" class="menu-overlay__link" data-num="06">FAQ</a>
+      <a href="#contact" class="menu-overlay__link" data-num="07">Contact</a>
     </nav>
     <div class="menu-overlay__footer">
       <span>yorin@revonc.be</span>
@@ -167,11 +187,12 @@
     <div class="dp__stone-dot" id="dpStoneIcon2"></div>
     <span class="dp__stone-label">Jouw Pad</span>
   </div>
-  <div class="dp__stone" id="dpStone3">
+  <a href="#testimonials" class="dp__stone dp__stone--clickable" id="dpStone3" aria-label="Bekijk de video testimonial" onclick="openVideoModal();return false;">
     <div class="dp__stone-ring"></div>
     <div class="dp__stone-dot" id="dpStoneIcon3"></div>
     <span class="dp__stone-label">Resultaten</span>
-  </div>
+    <span class="dp__stone-tooltip">Klik hier</span>
+  </a>
   <div class="dp__stone" id="dpStone4">
     <div class="dp__stone-ring"></div>
     <div class="dp__stone-dot" id="dpStoneIcon4"></div>
@@ -246,12 +267,10 @@
 
       <div class="panel__main">
         <h2 class="panel__title">Na de behandeling<br />is de zorg voorbij.<br /><em>Het herstel niet.</em></h2>
+        <p class="panel__sub" style="margin-top:1.5rem">Je bent ontslagen uit het ziekenhuis. De afspraken worden zeldzamer. Niemand vertelt je hoeveel je mag bewegen, hoe je veilig opbouwt, of wat normaal is. Geen plan. Geen begeleiding.</p>
       </div>
 
       <div class="panel__aside">
-        <p class="panel__body">
-          Je bent ontslagen uit het ziekenhuis. De afspraken worden zeldzamer. Niemand vertelt je hoeveel je mag bewegen, hoe je veilig opbouwt, of wat normaal is. Geen plan. Geen begeleiding.
-        </p>
         <div class="stat-stack">
           <div class="stat-item">
             <span class="stat-item__num" data-count="40" data-suffix="%">0%</span>
@@ -267,56 +286,15 @@
   </section>
 
   <!-- ========================================================
-       SECTION 3: ONS VERHAAL (moved up — after Het probleem)
+       HOE HET WERKT — samengevoegd onder "Het probleem" (per Yorin feedback)
+       Geen aparte header, vloeit door als oplossing op het probleem.
        ======================================================== -->
-  <section class="panel panel--dark panel--path-right" id="verhaal" data-panel="2">
+  <section class="panel panel--dark panel--path-left" id="droompad" data-panel="2" style="padding-top:0">
     <div class="panel__grid">
-      <div class="panel__label">
-        <span class="panel__num">02</span>
-        <span class="panel__cat">Ons verhaal</span>
-      </div>
-      <div class="panel__main">
-        <h2 class="panel__title">Gebouwd door<br />iemand die het<br /><em>zag van binnenuit.</em></h2>
-      </div>
-      <div class="panel__aside">
-        <p class="panel__body">
-          Liv zei het in één zin: <em>"Ik viel in een zwart gat."</em>
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          Na haar kankerbehandeling was er niets. Geen opvolging, geen plan, geen begeleiding. Het systeem dat haar behandelde, liet haar alleen voor alles wat daarna kwam. Ze moest opnieuw alleen vechten.
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          Dat was het startpunt van RevOnc.
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          Yorin De Smet is kinesitherapeut. Na zijn studies aan de UGent en stages in oncologische revalidatie zag hij hetzelfde patroon: patiënten werden ontslagen met een pamflet en aan hun lot overgelaten. Hij besloot te bouwen wat niemand anders bouwde.
-        </p>
-        <p class="panel__body" style="margin-top:1rem">
-          RevOnc werd opgericht in 2024 in Gent. Een pilootstudie bij AZorg Aalst met significante resultaten. Steun van VLAIO en Vocatio. Het doel: een wereld waarin iemand als Liv haar leven effectief kan heropbouwen.
-        </p>
-        <div class="founder-card">
-          <img src="yorin.webp" alt="Yorin De Smet" class="founder-card__avatar founder-card__avatar--photo" loading="lazy" width="80" height="80" />
-          <div>
-            <strong class="founder-card__name">Yorin De Smet</strong>
-            <span class="founder-card__title">Founder &amp; Kinesitherapeut · RevOnc BV</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================
-       SECTION 4: HOE HET WERKT (5 stappen)
-       ======================================================== -->
-  <section class="panel panel--dark panel--path-left" id="droompad" data-panel="3">
-    <div class="panel__grid">
-      <div class="panel__label">
-        <span class="panel__num">03</span>
-        <span class="panel__cat">Hoe het werkt</span>
-      </div>
+      <div class="panel__label" aria-hidden="true"></div>
 
       <div class="panel__main">
-        <h2 class="panel__title">Vijf stappen naar<br />jouw<br /><em>beweegdroom.</em></h2>
+        <h2 class="panel__title" style="font-size:clamp(1.4rem,2.6vw,2rem)"><em>Onze oplossing:</em> vijf stappen naar jouw beweegdroom.</h2>
         <p class="panel__sub">RevOnc stelt een persoonlijk programma samen op basis van jouw niveau. Elke dag weet je wat je moet doen.</p>
         <div class="mockup-showcase">
           <img src="mockups.webp" alt="RevOnc app — droompad en profiel schermen" class="mockup-showcase__img" loading="lazy" width="600" height="400" />
@@ -448,6 +426,66 @@
         <span>Gentrepreneur</span>
         <span>HO Gent</span>
         <span>The Future 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TESTIMONIALS (onder partners, per Yorin feedback)
+       ======================================================== -->
+  <section class="panel panel--dark" id="testimonials" style="padding:5rem 2rem;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%, rgba(27,176,170,0.08) 0%, transparent 60%);pointer-events:none"></div>
+    <div style="max-width:72rem;margin:0 auto;position:relative;z-index:3">
+      <div style="text-align:center;margin-bottom:3rem">
+        <span style="font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-500);display:block;margin-bottom:1rem">Wat patiënten zeggen</span>
+        <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:0.5rem">Echte verhalen, <em style="color:var(--teal-500);font-style:normal">echte impact.</em></h2>
+        <p style="font-size:1rem;line-height:1.7;color:var(--white-80);max-width:36rem;margin:0 auto">Stemmen uit onze pilootstudie bij AZorg Aalst.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-bottom:2rem">
+        <!-- Video testimonial card -->
+        <div id="video-testimonial-1" onclick="openVideoModal()" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;overflow:hidden;display:flex;flex-direction:column;cursor:pointer">
+          <div style="position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#0a2540 0%,#031019 100%);display:flex;align-items:center;justify-content:center;cursor:pointer">
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--orange-cta);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(245,142,46,0.35)">
+              <span style="color:#fff;font-size:1.4rem;margin-left:4px">&#9654;</span>
+            </div>
+            <span style="position:absolute;bottom:0.75rem;left:0.75rem;font-size:0.75rem;color:var(--white-80);background:rgba(0,0,0,0.5);padding:0.25rem 0.6rem;border-radius:1rem">Video testimonial</span>
+          </div>
+          <div style="padding:1.25rem">
+            <p style="font-size:0.95rem;line-height:1.6;color:var(--white-80);margin-bottom:0.75rem">"Voor het eerst sinds mijn behandeling voelde ik weer dat ik vooruitging. Elke dag een klein stapje."</p>
+            <p style="font-size:0.85rem;font-weight:600;color:var(--teal-500)">— Pilootdeelnemer, AZorg Aalst</p>
+          </div>
+        </div>
+
+        <!-- Text testimonial -->
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div style="font-size:2rem;color:var(--teal-500);line-height:1;margin-bottom:0.5rem">"</div>
+            <p style="font-size:0.95rem;line-height:1.6;color:var(--white-80);margin-bottom:1rem">De app gaf me structuur in een periode waarin ik totaal de weg kwijt was. De oefeningen waren haalbaar, ook op slechte dagen.</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem">
+            <p style="font-size:0.85rem;font-weight:600;color:var(--teal-500)">Pilootdeelnemer</p>
+            <p style="font-size:0.75rem;color:var(--white-60)">AZorg Aalst — 10 weken programma</p>
+          </div>
+        </div>
+
+        <!-- Text testimonial -->
+        <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between">
+          <div>
+            <div style="font-size:2rem;color:var(--teal-500);line-height:1;margin-bottom:0.5rem">"</div>
+            <p style="font-size:0.95rem;line-height:1.6;color:var(--white-80);margin-bottom:1rem">Eindelijk iets dat me niet behandelt als een patiëntnummer. Ik voelde me gezien en aangemoedigd om door te gaan.</p>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,255,0.08);padding-top:1rem">
+            <p style="font-size:0.85rem;font-weight:600;color:var(--teal-500)">Pilootdeelnemer</p>
+            <p style="font-size:0.75rem;color:var(--white-60)">AZorg Aalst — 10 weken programma</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08)">
+        <div><div style="font-size:1.75rem;font-weight:800;color:var(--teal-500)">8.1/10</div><div style="font-size:0.8rem;color:var(--white-60)">Tevredenheid</div></div>
+        <div><div style="font-size:1.75rem;font-weight:800;color:var(--teal-500)">83%</div><div style="font-size:0.8rem;color:var(--white-60)">Wil doorgaan</div></div>
+        <div><div style="font-size:1.75rem;font-weight:800;color:var(--teal-500)">43</div><div style="font-size:0.8rem;color:var(--white-60)">Deelnemers</div></div>
       </div>
     </div>
   </section>
@@ -694,7 +732,46 @@
   });
   </script>
 
+  <!-- ========================================================
+       VIDEO TESTIMONIAL MODAL
+       ======================================================== -->
+  <div id="videoModal" role="dialog" aria-modal="true" aria-label="Video testimonial" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(3,16,25,0.92);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity 0.3s ease">
+    <button type="button" aria-label="Sluiten" onclick="closeVideoModal()" style="position:absolute;top:1.5rem;right:1.5rem;width:48px;height:48px;border-radius:50%;border:none;background:rgba(255,255,255,0.1);color:#fff;font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">&times;</button>
+    <div style="position:relative;width:100%;max-width:960px;aspect-ratio:16/9;border-radius:1rem;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.08)">
+      <video id="testimonialVideo" controls playsinline preload="metadata" style="width:100%;height:100%;display:block;background:#000">
+        <source src="https://afjnugrbswbtfdugwktd.supabase.co/storage/v1/object/public/Website/Landingspage%20Video.mp4" type="video/mp4" />
+        Je browser ondersteunt geen video tag.
+      </video>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var modal = document.getElementById('videoModal');
+      var video = document.getElementById('testimonialVideo');
+      window.openVideoModal = function() {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(function() { modal.style.opacity = '1'; });
+        try { video.currentTime = 0; video.play(); } catch (e) {}
+      };
+      window.closeVideoModal = function() {
+        modal.style.opacity = '0';
+        try { video.pause(); } catch (e) {}
+        setTimeout(function() {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }, 300);
+      };
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeVideoModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') closeVideoModal();
+      });
+    })();
+  </script>
+
   <script src="js/full-page-sparks.min.js?v=3" defer></script>
-  <script src="js/main_v2.min.js?v=16" defer></script>
+  <script src="js/main_v2.js?v=17" defer></script>
 </body>
 </html>
