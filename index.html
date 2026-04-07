@@ -119,6 +119,121 @@
     </button>
   </nav>
 
+  <!-- ========================================================
+       SCROLL INDICATOR (right side) — sectie-progressie + dots
+       ======================================================== -->
+  <aside class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
+    <div class="scroll-indicator__track">
+      <div class="scroll-indicator__fill" id="scrollIndicatorFill"></div>
+    </div>
+    <ul class="scroll-indicator__dots" id="scrollIndicatorDots">
+      <li><a href="#probleem"     data-section="probleem"     class="scroll-indicator__dot"><span class="scroll-indicator__label">Het probleem</span></a></li>
+      <li><a href="#droompad"     data-section="droompad"     class="scroll-indicator__dot"><span class="scroll-indicator__label">Droompad</span></a></li>
+      <li><a href="#resultaten"   data-section="resultaten"   class="scroll-indicator__dot"><span class="scroll-indicator__label">Resultaten</span></a></li>
+      <li><a href="#testimonials" data-section="testimonials" class="scroll-indicator__dot"><span class="scroll-indicator__label">Verhalen</span></a></li>
+      <li><a href="#org-bridge"   data-section="org-bridge"   class="scroll-indicator__dot"><span class="scroll-indicator__label">Organisaties</span></a></li>
+      <li><a href="#faq"          data-section="faq"          class="scroll-indicator__dot"><span class="scroll-indicator__label">FAQ</span></a></li>
+      <li><a href="#contact"      data-section="contact"      class="scroll-indicator__dot"><span class="scroll-indicator__label">Contact</span></a></li>
+    </ul>
+  </aside>
+
+  <style>
+    .scroll-indicator {
+      position: fixed;
+      top: 50%;
+      right: 1.6rem;
+      transform: translateY(-50%);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      pointer-events: none;
+    }
+    .scroll-indicator__track {
+      position: relative;
+      width: 2px;
+      height: 220px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .scroll-indicator__fill {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 0%;
+      background: linear-gradient(180deg, #1BB0AA, #2E7B78);
+      transition: height 0.15s ease-out;
+    }
+    .scroll-indicator__dots {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 220px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      pointer-events: auto;
+    }
+    .scroll-indicator__dot {
+      display: block;
+      position: relative;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      border: 2px solid rgba(255,255,255,0.35);
+      transform: translateX(4px);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .scroll-indicator__dot:hover {
+      background: #1BB0AA;
+      border-color: #1BB0AA;
+      transform: translateX(4px) scale(1.3);
+    }
+    .scroll-indicator__dot.active {
+      background: #1BB0AA;
+      border-color: #fff;
+      box-shadow: 0 0 0 4px rgba(27,176,170,0.25), 0 0 16px rgba(27,176,170,0.6);
+      transform: translateX(4px) scale(1.4);
+    }
+    .scroll-indicator__label {
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%) translateX(8px);
+      background: rgba(3,16,25,0.95);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 0 0.6rem;
+      border-radius: 0.4rem;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      border: 1px solid rgba(27,176,170,0.5);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      width: 130px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .scroll-indicator__dot:hover .scroll-indicator__label {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0);
+    }
+    @media (max-width: 768px) {
+      .scroll-indicator { display: none; }
+    }
+  </style>
+
   <!-- Full-screen overlay menu -->
   <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
     <nav class="menu-overlay__nav">

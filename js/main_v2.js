@@ -293,7 +293,7 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
   // ---- Stone positions along path (0–1) ----
   // DO NOT CHANGE — manually tuned to avoid overlapping section text/images
-  const stonePositions = [0.04, 0.24, 0.42, 0.50, 0.96];
+  const stonePositions = [0.04, 0.30, 0.42, 0.50, 0.96];
 
   // ---- Mathematically perfect S-curve anchors (pctX, pctY of page) ----
   // Only key turning points — cubic beziers with vertical tangents create
@@ -492,32 +492,108 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
    11. NAV SCROLL SPY — highlight active section link
    ============================================================ */
 (function initNavSpy() {
-  const links = $$('.nav__link[data-section]');
-  if (!links.length) return;
+  const navLinks = $$('.nav__link[data-section]');
+  const indicatorDots = $$('.scroll-indicator__dot[data-section]');
+  const fillEl = document.getElementById('scrollIndicatorFill');
+  const allLinks = navLinks.concat(indicatorDots);
+  if (!allLinks.length) return;
 
-  const sections = links.map(link => {
+  // Build a unique map of sections from both nav links and indicator dots.
+  const seen = {};
+  const sections = [];
+  allLinks.forEach(link => {
     const id = link.dataset.section;
-    return { link, el: document.getElementById(id) };
-  }).filter(s => s.el);
+    if (seen[id]) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    seen[id] = true;
+    sections.push({ id, el });
+  });
+  if (!sections.length) return;
 
-  // Track which section is most visible
-  var currentId = null;
+  const nav = document.getElementById('nav');
 
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        currentId = entry.target.id;
-      }
+  // Smooth-scroll for both header nav links AND indicator dots — consistent offset, no native hash jump.
+  function bindSmoothScroll(link) {
+    link.addEventListener('click', e => {
+      const id = link.dataset.section;
+      const target = document.getElementById(id);
+      if (!target) return;
+      e.preventDefault();
+      const navH = nav ? nav.offsetHeight : 0;
+      const top = target.getBoundingClientRect().top + window.scrollY - navH - 12;
+      window.scrollTo({ top, behavior: 'smooth' });
+      // Update hash without triggering a jump.
+      if (history.replaceState) history.replaceState(null, '', '#' + id);
     });
-    // Update active link
-    links.forEach(l => l.classList.remove('active'));
-    if (currentId) {
-      const match = sections.find(s => s.el.id === currentId);
-      if (match) match.link.classList.add('active');
-    }
-  }, { threshold: 0.15, rootMargin: '-10% 0px -60% 0px' });
+  }
+  navLinks.forEach(bindSmoothScroll);
+  indicatorDots.forEach(bindSmoothScroll);
 
-  sections.forEach(s => observer.observe(s.el));
+  let currentId = null;
+  let ticking = false;
+
+  function setActive(id) {
+    if (id === currentId) return;
+    currentId = id;
+    allLinks.forEach(l => l.classList.toggle('active', l.dataset.section === id));
+  }
+
+  function update() {
+    ticking = false;
+    const navH = nav ? nav.offsetHeight : 0;
+    const anchor = window.scrollY + navH + (window.innerHeight - navH) * 0.25;
+
+    // Update progress fill — interpolated between section anchors so the
+    // fill always reaches exactly to the active dot (and partway to the next).
+    if (fillEl && sections.length > 1) {
+      const tops = sections.map(s => s.el.getBoundingClientRect().top + window.scrollY - navH);
+      let segIdx = 0;
+      let segFrac = 0;
+      if (anchor <= tops[0]) {
+        segIdx = 0; segFrac = 0;
+      } else if (anchor >= tops[tops.length - 1] ||
+                 window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        segIdx = sections.length - 1; segFrac = 0;
+      } else {
+        for (let i = 0; i < tops.length - 1; i++) {
+          if (anchor >= tops[i] && anchor < tops[i + 1]) {
+            segIdx = i;
+            const span = tops[i + 1] - tops[i];
+            segFrac = span > 0 ? (anchor - tops[i]) / span : 0;
+            break;
+          }
+        }
+      }
+      const pct = ((segIdx + segFrac) / (sections.length - 1)) * 100;
+      fillEl.style.height = Math.min(100, Math.max(0, pct)) + '%';
+    }
+
+    // Bottom-of-page edge case: always highlight the last section.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      setActive(sections[sections.length - 1].el.id);
+      return;
+    }
+
+    // Find the last section whose top is above the anchor line.
+    let activeId = sections[0].el.id;
+    for (let i = 0; i < sections.length; i++) {
+      const top = sections[i].el.getBoundingClientRect().top + window.scrollY;
+      if (top <= anchor) activeId = sections[i].el.id;
+      else break;
+    }
+    setActive(activeId);
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
 })();
 
 
