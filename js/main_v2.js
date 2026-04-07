@@ -293,19 +293,19 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
 
   // ---- Stone positions along path (0–1) ----
   // DO NOT CHANGE — manually tuned to avoid overlapping section text/images
-  const stonePositions = [0.04, 0.30, 0.42, 0.50, 0.96];
+  const stonePositions = [0.04, 0.30, 0.42, 0.46, 0.96];
 
   // ---- Mathematically perfect S-curve anchors (pctX, pctY of page) ----
   // Only key turning points — cubic beziers with vertical tangents create
   // perfectly smooth, consistent curves between them. No hand-drawn noise.
   const ANCHORS = [
-    { x: 0.110, y: 0.08 },    // A0 — start (left)
-    { x: 0.105, y: 0.16 },    // A1 — hold left before first curve
-    { x: 0.420, y: 0.375 },   // A2 — right peak 1
-    { x: 0.148, y: 0.510 },   // A3 — left trough 1
-    { x: 0.474, y: 0.675 },   // A4 — right peak 2
-    { x: 0.130, y: 0.840 },   // A5 — left trough 2
-    { x: 0.127, y: 0.970 },   // A6 — end (left)
+    { x: 0.110, y: 0.08 },    // start (left)
+    { x: 0.105, y: 0.16 },    // hold left before first curve
+    { x: 0.420, y: 0.375 },   // right peak 1
+    { x: 0.148, y: 0.510 },   // left trough 1
+    { x: 0.780, y: 0.665 },   // right peak 2 — detour around org-bridge text
+    { x: 0.130, y: 0.840 },   // left trough 2
+    { x: 0.127, y: 0.970 },   // end (left)
   ];
 
   // ---- Build perfectly smooth SVG path ----
@@ -464,6 +464,33 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
     }, 150);
   });
 
+  // Rebuild once all images/fonts have loaded — fixes first-load bug where
+  // buildPath ran before images had reserved their height, leaving a black
+  // strip at the bottom and stones positioned on a too-short path.
+  window.addEventListener('load', () => {
+    buildPath();
+    onScroll();
+  });
+
+  // Watch for late layout changes (web font swap, lazy images, Spline embeds).
+  // Rebuild when document height actually changes.
+  if (typeof ResizeObserver !== 'undefined') {
+    let lastDocH = document.documentElement.scrollHeight;
+    let roTimer;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(roTimer);
+      roTimer = setTimeout(() => {
+        const h = document.documentElement.scrollHeight;
+        if (Math.abs(h - lastDocH) > 4) {
+          lastDocH = h;
+          buildPath();
+          onScroll();
+        }
+      }, 100);
+    });
+    ro.observe(document.body);
+  }
+
   window.addEventListener('scroll', () => {
     requestAnimationFrame(onScroll);
   }, { passive: true });
@@ -510,6 +537,11 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
     sections.push({ id, el });
   });
   if (!sections.length) return;
+  // Sort sections by document order so fill interpolation is monotonic.
+  sections.sort((a, b) =>
+    (a.el.getBoundingClientRect().top + window.scrollY) -
+    (b.el.getBoundingClientRect().top + window.scrollY)
+  );
 
   const nav = document.getElementById('nav');
 

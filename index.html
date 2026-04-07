@@ -106,11 +106,12 @@
 
     <div class="nav__links" id="navLinks">
       <a href="#probleem" class="nav__link" data-section="probleem">Het probleem</a>
-      <a href="about.html" class="nav__link">Ons verhaal</a>
       <a href="#resultaten" class="nav__link" data-section="resultaten">Resultaten</a>
+      <a href="#faq" class="nav__link" data-section="faq">FAQ</a>
+      <span class="nav__links-sep" aria-hidden="true"></span>
+      <a href="about.html" class="nav__link">Ons verhaal</a>
       <a href="voor-organisaties.html" class="nav__link">Organisaties</a>
       <a href="blog/" class="nav__link">Blog</a>
-      <a href="#faq" class="nav__link" data-section="faq">FAQ</a>
       <a href="#contact" class="nav__link nav__link--cta" data-section="contact">Contact</a>
     </div>
 
@@ -297,11 +298,6 @@
     <div class="dp__stone-dot" id="dpStoneIcon1"></div>
     <span class="dp__stone-label">Diagnose</span>
   </div>
-  <div class="dp__stone" id="dpStone2">
-    <div class="dp__stone-ring"></div>
-    <div class="dp__stone-dot" id="dpStoneIcon2"></div>
-    <span class="dp__stone-label">Jouw Pad</span>
-  </div>
   <a href="#testimonials" class="dp__stone dp__stone--clickable" id="dpStone3" aria-label="Bekijk de video testimonial" onclick="openVideoModal();return false;">
     <div class="dp__stone-ring"></div>
     <div class="dp__stone-dot" id="dpStoneIcon3"></div>
@@ -362,8 +358,8 @@
         <h1 class="hero-content__title">Jouw herstel. <em>Jouw pad.</em></h1>
         <p class="hero-content__sub">RevOnc is de wellbeing app die je begeleidt bij je herstel na kankerbehandeling. Persoonlijke kracht- en uithoudingsprogramma's op maat, ontwikkeld met wetenschappelijke onderbouwing en AI. Klinisch onderbouwd bij AZorg Aalst.</p>
         <div class="hero-content__ctas">
-          <a href="#" class="hero-content__cta hero-content__cta--primary" onclick="handleAppDownload(event)">Download de app <span>→</span></a>
-          <a href="#droompad" class="hero-content__cta hero-content__cta--secondary">Bekijk hoe het werkt <span>→</span></a>
+          <a href="#" class="hero-content__cta hero-content__cta--primary" onclick="handleAppDownload(event)">Download de app</a>
+          <a href="#droompad" class="hero-content__cta hero-content__cta--secondary">Bekijk hoe het werkt</a>
         </div>
         <p class="hero-content__note" style="display:none">Gratis op iOS en Android</p>
       </div>
@@ -506,7 +502,7 @@
             <input type="text" name="naam" placeholder="Uw naam" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
             <input type="email" name="email" placeholder="Uw email" required style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
             <input type="text" name="organisatie" placeholder="Organisatie (optioneel)" style="padding:0.6rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.85rem">
-            <button type="submit" style="padding:0.6rem 1.5rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;margin-top:0.25rem">Vraag het rapport aan →</button>
+            <button type="submit" style="padding:0.6rem 1.5rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;margin-top:0.25rem">Vraag het rapport aan</button>
           </form>
         </div>
       </div>
@@ -597,11 +593,6 @@
         </div>
       </div>
 
-      <div style="text-align:center;display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08)">
-        <div><div style="font-size:1.75rem;font-weight:800;color:var(--teal-500)">8.1/10</div><div style="font-size:0.8rem;color:var(--white-60)">Tevredenheid</div></div>
-        <div><div style="font-size:1.75rem;font-weight:800;color:var(--teal-500)">83%</div><div style="font-size:0.8rem;color:var(--white-60)">Wil doorgaan</div></div>
-        <div><div style="font-size:1.75rem;font-weight:800;color:var(--teal-500)">43</div><div style="font-size:0.8rem;color:var(--white-60)">Deelnemers</div></div>
-      </div>
     </div>
   </section>
 
@@ -614,7 +605,7 @@
       <span style="font-size:0.8rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal-500);display:block;margin-bottom:1rem">Voor organisaties</span>
       <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;line-height:1.15;margin-bottom:1rem">Bent u een ziekenhuis, verzekeraar<br />of farmabedrijf?</h2>
       <p style="font-size:1rem;line-height:1.7;color:var(--white-80);margin-bottom:2rem">RevOnc biedt organisaties een kant-en-klaar digitaal nazorgplatform. Standalone, klinisch onderbouwd, geen IT-integratie nodig.</p>
-      <a href="voor-organisaties.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:var(--orange-cta);color:#fff;font-weight:700;border-radius:3rem;text-decoration:none;font-size:1rem;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(245,142,46,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">Ontdek ons aanbod <span>&#8594;</span></a>
+      <a href="voor-organisaties.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;background:var(--orange-cta);color:#fff;font-weight:700;border-radius:3rem;text-decoration:none;font-size:1rem;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(245,142,46,0.3)'" onmouseout="this.style.transform='';this.style.boxShadow=''">Ontdek ons aanbod</a>
     </div>
   </section>
 
@@ -710,29 +701,11 @@
         <input type="text" name="organisatie" placeholder="Organisatie (optioneel)" style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
         <input type="tel" name="telefoon" placeholder="Telefoonnummer (optioneel)" style="width:100%;box-sizing:border-box;padding:0.7rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit">
         <div class="contact-center__btns" style="display:flex;gap:0.75rem;margin-top:0.25rem;width:100%">
-          <button type="submit" class="contact-center__btn" style="flex:1;border:none;cursor:pointer;font-family:inherit;box-sizing:border-box;justify-content:center;padding:1.1rem 0;font-size:1.05rem;font-weight:800">Plan een kennismaking <span>→</span></button>
-          <a href="#" class="contact-center__btn" style="flex:1;text-align:center;background:transparent;border:1px solid rgba(255,255,255,0.3);box-sizing:border-box;justify-content:center;text-decoration:none;padding:1.1rem 0;font-size:1.05rem;font-weight:800" onclick="handleAppDownload(event)">Download de app <span>→</span></a>
+          <button type="submit" class="contact-center__btn" style="flex:1;border:none;cursor:pointer;font-family:inherit;box-sizing:border-box;justify-content:center;padding:1.1rem 0;font-size:1.05rem;font-weight:800">Plan een kennismaking</button>
+          <a href="#" class="contact-center__btn" style="flex:1;text-align:center;background:transparent;border:1px solid rgba(255,255,255,0.3);box-sizing:border-box;justify-content:center;text-decoration:none;padding:1.1rem 0;font-size:1.05rem;font-weight:800" onclick="handleAppDownload(event)">Download de app</a>
         </div>
       </form>
 
-      <p style="margin-top:1.5rem;opacity:0.5;font-size:0.85rem">yorin@revonc.be</p>
-
-      <!-- Lead magnet (herhaling) -->
-      <div style="margin-top:2rem;padding:1.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:1rem;max-width:28rem;margin-left:auto;margin-right:auto">
-        <p style="font-weight:600;margin-bottom:0.5rem">Ontvang het volledige pilootrapport</p>
-        <p style="opacity:0.6;font-size:0.85rem;margin-bottom:0.75rem">Wij sturen je de volledige resultaten van de pilootstudie.</p>
-        <form action="https://formsubmit.co/yorin@revonc.be" method="POST" style="display:flex;gap:0.5rem;flex-wrap:wrap">
-          <input type="hidden" name="_subject" value="📄 Pilootrapport aanvraag">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <!-- AJAX submission handles redirect -->
-          <input type="hidden" name="_autoresponse" value="Bedankt voor je interesse! Yorin neemt zo snel mogelijk contact met je op en stuurt je het pilootrapport. — Team RevOnc">
-          <input type="hidden" name="formulier" value="Pilootrapport aanvraag (contact-sectie)">
-          <input type="text" name="naam" placeholder="Uw naam" required style="flex:1;min-width:10rem;padding:0.5rem 0.75rem;border-radius:0.4rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.8rem;font-family:inherit">
-          <input type="email" name="email" placeholder="Uw email" required style="flex:1;min-width:10rem;padding:0.5rem 0.75rem;border-radius:0.4rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:0.8rem;font-family:inherit">
-          <button type="submit" style="padding:0.5rem 1rem;border-radius:2rem;border:none;background:var(--orange-cta);color:#fff;font-weight:600;font-size:0.8rem;cursor:pointer;font-family:inherit;white-space:nowrap">Vraag aan →</button>
-        </form>
-      </div>
     </div>
 
     <!-- Footer bar -->

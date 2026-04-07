@@ -144,8 +144,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   gap: 1.75rem;
-  margin-left: auto;
+  flex: 1;
+  margin-left: 2rem;
   margin-right: 1.5rem;
+}
+
+.nav__links-sep {
+  flex: 1;
+  min-width: 2rem;
 }
 
 .nav__link {
