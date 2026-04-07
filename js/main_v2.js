@@ -290,6 +290,9 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
   const starSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
 
   let pathLen = 0;
+  // Lookup table mapping page-Y to arc length along the path, so the head
+  // tracks the viewport exactly instead of running ahead on curvy segments.
+  let pathSamples = []; // sorted by y: [{y, len}, ...]
 
   // ---- Stone positions along path (0–1) ----
   // DO NOT CHANGE — manually tuned to avoid overlapping section text/images
@@ -357,7 +360,33 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
     pathEl.style.strokeDasharray = pathLen;
     pathEl.style.strokeDashoffset = pathLen;
 
+    // Build y → arc-length lookup (monotonic in y because path is top-down).
+    // 400 samples is plenty for smooth tracking.
+    pathSamples = [];
+    var SAMPLES = 400;
+    for (var s = 0; s <= SAMPLES; s++) {
+      var L = (s / SAMPLES) * pathLen;
+      var p = pathEl.getPointAtLength(L);
+      pathSamples.push({ y: p.y, len: L });
+    }
+
     positionStones();
+  }
+
+  // Given a target page-Y, return the arc length along the path at that Y.
+  function lenAtY(targetY) {
+    if (!pathSamples.length) return 0;
+    if (targetY <= pathSamples[0].y) return 0;
+    if (targetY >= pathSamples[pathSamples.length - 1].y) return pathLen;
+    // Binary search on y
+    var lo = 0, hi = pathSamples.length - 1;
+    while (hi - lo > 1) {
+      var mid = (lo + hi) >> 1;
+      if (pathSamples[mid].y < targetY) lo = mid; else hi = mid;
+    }
+    var a = pathSamples[lo], b = pathSamples[hi];
+    var t = (targetY - a.y) / (b.y - a.y || 1);
+    return a.len + (b.len - a.len) * t;
   }
 
   // ---- Position stones along the path (page coordinates) ----
@@ -383,15 +412,14 @@ window.loadSpline = function (slotSelector, sceneUrl, opts = {}) {
     const maxScroll = docH - winH;
     if (maxScroll <= 0) return;
 
-    // Sync path head to viewport: path draws as the viewport reaches each section
-    // Path starts at ANCHORS[0].y and ends at ANCHORS[last].y of the page
-    var yStart = ANCHORS[0].y * docH;
-    var yEnd = ANCHORS[ANCHORS.length - 1].y * docH;
-    var pathRange = yEnd - yStart;
-
     // Path head should be at ~75% of the viewport (slightly below center)
     var viewTarget = scrollY + winH * 0.75;
-    var progress = Math.max(0, Math.min(1, (viewTarget - yStart) / pathRange));
+
+    // Map viewport Y directly to arc length via the lookup table so the head
+    // follows the scroll exactly, even on curvy segments where arc length
+    // grows faster than y (prevents "head running ahead of scroll").
+    var lenHere = lenAtY(viewTarget);
+    var progress = pathLen > 0 ? Math.max(0, Math.min(1, lenHere / pathLen)) : 0;
 
     // Draw path (stroke reveals with scroll)
     pathEl.style.strokeDashoffset = (pathLen * (1 - progress)).toFixed(1);
